@@ -157,27 +157,30 @@ int main(){
                 if (time(NULL) - lastmove >= 0.5)
                 {
                         e = moveEnemy(e);
-                        if (e.yPos == 15)
+                        if (e.yPos == 15 && e.yVel == -1)
                         {
                                 e.yVel = 0;
                                 e.xVel = 1;
                         }
-                        else if (e.xPos == 15)
+                        else if (e.xPos == 15 && e.xVel == 1)
                         {
                                 e.yVel = 1;
                                 e.xVel = 0;
                         }
-                        else if (e.yPos == 20)
+                        else if (e.yPos == 20 && e.yVel == 1)
                         {
                                 e.yVel = 0;
                                 e.xVel = -1;
                         }
-                        else if (e.xPos == 10)
+                        else if (e.xPos == 10 && e.xVel == -1)
                         {
                                 e.yVel = -1;
                                 e.xVel = 0;
                         }
                         lastmove = time(NULL);
+                        move(30, 30);
+                        printw("x = %d, y = %d\n", e.xPos, e.yPos);
+                        move(e.yPos, e.xPos);
                 }
                 else if (ch == 'q'){
                         break;
