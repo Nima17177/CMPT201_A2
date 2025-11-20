@@ -10,56 +10,66 @@ typedef struct
         int x;
         int y;
         char symbol;
-} Character;
+} Player;
 
-
-/* Create a player and set starting position at (10, 25)*/
-Character createCharacter(char symbol)
+typedef struct
 {
-        Character p;
-        p.x = 10;
+        int xPos;
+        int yPos;
+        int xVel;
+        int yVel;
+        char symbol;
+} Enemy;
+
+
+Player createPlayer()
+{
+        Player p;
         p.y = 25;
-        p.symbol = symbol;
+        p.x = 10;
+        p.symbol = 'P';
         return p;
 }
 
-/* Draw a player on the screen */
-void drawCharacter(Character p)
+Enemy createEnemy()
 {
+        Enemy e;
+        e.yPos = 20;
+        e.xPos = 10;
+        e.yVel = -1;
+        e.xVel = 0;
+        e.symbol = 'E';
+        return e;
+}
+
+
+
+Player movePlayer(Player p, int yVel, int xVel)
+{
+        mvaddch(p.y, p.x, ' ');
+        p.y = p.y + yVel;
+        p.x = p.x + xVel;
         mvaddch(p.y, p.x, p.symbol);
         refresh();
-}
-
-/* Function that takes care of the player moving right*/
-/* Moving consists of undrawing the player at current
-   position (undrawing meaning setting those positions
-   to a space) and redrawing the player at the next
-   position.
-*/
-
-Character moveRight(Character p)
-{
-        mvaddch(p.y, p.x, ' ');
-        mvaddch(p.y, p.x+1, p.symbol);
-        p.x = p.x+1;
-        refresh();
         return p;
 }
 
-Character moveUp(Character p)
+Enemy moveEnemy(Enemy e)
 {
-        mvaddch(p.y, p.x, ' ');
-        mvaddch(p.y-1, p.x, p.symbol);
-        p.y = p.y-1;
+        mvaddch(e.yPos, e.xPos, ' ');
+        e.yPos = e.yPos + e.yVel;
+        e.xPos = e.xPos + e.xVel;
+        mvaddch(e.yPos, e.xPos, e.symbol);
         refresh();
-        return p;
+        return e;
 }
 
 int main(){
 
         WINDOW *w;
-        Character p;
         int ch;
+        Player p;
+        Enemy e;
         //initialize ncurses
         initscr();
 
@@ -92,38 +102,81 @@ int main(){
         mvprintw(26,30,"%c",h);
         mvprintw(27,30,"%c",h);
 
-        p=createCharacter('P');
-
-        drawCharacter(p);
+        p = createPlayer();
+        e = createEnemy();
+        mvaddch(p.y, p.x, p.symbol);
+        mvaddch(e.yPos, e.xPos, e.symbol);
 
         keypad(stdscr, TRUE);
-        ch=getch();
         refresh();
-
         /* Direction checking:
+           KEY_RIGHT
            KEY_UP
            KEY_DOWN
            KEY_LEFT
         */
-        Character e = createCharacter('E');
-        drawCharacter(e);
+
         time_t lastmove = time(NULL);
         nodelay(stdscr, TRUE);
-        while (1){
+
+        while (1)
+        {
                 ch = getch();
-                if (ch != ERR)
+                if (ch != ERR) // If key has been pressed.
                 {
-                        if (ch == KEY_RIGHT){
-                                //check to see if the player can advance
-                                //i.e. is there an empty space
-                                if (mvinch(p.y, p.x+1) == ' ')
-                                        p = moveRight(p);
+                        if (ch == KEY_RIGHT)
+                        {
+                                if (mvinch(p.y, p.x+1) == ' ') // There is an empty spot to the right, so player can move.
+                                {
+                                        p = movePlayer(p, 0, 1);
+                                }
+                        }
+                        else if (ch == KEY_LEFT)
+                        {
+                                if (mvinch(p.y, p.x-1) == ' ') // There is an empty spot to the right, so player can move.
+                                {
+                                        p = movePlayer(p, 0, -1);
+                                }
+                        }
+                        else if (ch == KEY_UP)
+                        {
+                                if (mvinch(p.y-1, p.x) == ' ') // There is an empty spot to the right, so player can move.
+                                {
+                                        p = movePlayer(p, -1, 0);
+                                }
+                        }
+                        else if (ch == KEY_DOWN)
+                        {
+                                if (mvinch(p.y+1, p.x) == ' ') // There is an empty spot to the right, so player can move.
+                                {
+                                        p = movePlayer(p, 1, 0);
+                                }
                         }
 
                 }
                 if (time(NULL) - lastmove >= 0.5)
                 {
-                        e = moveUp(e);
+                        e = moveEnemy(e);
+                        if (e.yPos == 15)
+                        {
+                                e.yVel = 0;
+                                e.xVel = 1;
+                        }
+                        else if (e.xPos == 15)
+                        {
+                                e.yVel = 1;
+                                e.xVel = 0;
+                        }
+                        else if (e.yPos == 20)
+                        {
+                                e.yVel = 0;
+                                e.xVel = -1;
+                        }
+                        else if (e.xPos == 10)
+                        {
+                                e.yVel = -1;
+                                e.xVel = 0;
+                        }
                         lastmove = time(NULL);
                 }
                 else if (ch == 'q'){
