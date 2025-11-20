@@ -1,0 +1,2 @@
+APP:
+        gcc -Wall -std=c11 test.c -lncurses -ltinfo -lm -lc
