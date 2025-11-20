@@ -152,9 +152,13 @@ int main(){
                                         p = movePlayer(p, 1, 0);
                                 }
                         }
+                        else if (ch == 'q')
+                        {
+                                break;
+                        }
 
                 }
-                if (time(NULL) - lastmove >= 0.5)
+                if (time(NULL) - lastmove <= 1)
                 {
                         e = moveEnemy(e);
                         if (e.yPos == 15 && e.yVel == -1)
@@ -181,9 +185,6 @@ int main(){
                         move(30, 30);
                         printw("x = %d, y = %d\n", e.xPos, e.yPos);
                         move(e.yPos, e.xPos);
-                }
-                else if (ch == 'q'){
-                        break;
                 }
                  refresh();
                  napms(20);
