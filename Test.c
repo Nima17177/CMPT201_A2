@@ -4,121 +4,118 @@
 #include <unistd.h>
 #include <time.h>
 
-/* struct representing each part of the player*/
 typedef struct
 {
-        int x;
-        int y;
-        char symbol;
-} Player;
-
-typedef struct
-{
-        int xPos;
         int yPos;
-        int xVel;
+        int xPos;
         int yVel;
+        int xVel;
         char symbol;
-} Enemy;
+} Character;
 
 
-Player createPlayer()
+Character createPlayer()
 {
-        Player p;
-        p.y = 25;
-        p.x = 10;
+        Character p;
+        p.yPos = 30;
+        p.xPos = 30;
+        p.yVel = -2;
+        p.xVel = 0;
         p.symbol = 'P';
-        return p;
-}
-
-Enemy createEnemy()
-{
-        Enemy e;
-        e.yPos = 20;
-        e.xPos = 10;
-        e.yVel = -1;
-        e.xVel = 0;
-        e.symbol = 'E';
-        return e;
-}
-
-
-
-Player movePlayer(Player p, int yVel, int xVel)
-{
-        mvaddch(p.y, p.x, ' ');
-        p.y = p.y + yVel;
-        p.x = p.x + xVel;
-        mvaddch(p.y, p.x, p.symbol);
+        mvaddch(p.yPos, p.xPos, p.symbol);
         refresh();
         return p;
 }
 
-Enemy moveEnemy(Enemy e)
+Character createEnemy(char x)
 {
-        mvaddch(e.yPos, e.xPos, ' ');
-        e.yPos = e.yPos + e.yVel;
-        e.xPos = e.xPos + e.xVel;
+        Character e;
+        e.yPos = (5 * ((int)(x-'0')));
+        e.xPos = (3 * ((int)(x-'0')));
+        e.yVel = 1;
+        e.xVel = 0;
+        e.symbol = x;
         mvaddch(e.yPos, e.xPos, e.symbol);
         refresh();
         return e;
 }
+
+
+
+Character moveCharacter(Character c)
+{
+        if (((c.yVel != 0) && (mvinch(c.yPos+c.yVel, c.xPos) == ' ' )) || ((c.xVel != 0) && (mvinch(c.yPos, c.xPos+c.xVel) == ' ' )))
+        {
+                mvaddch(c.yPos, c.xPos, ' ');
+                c.yPos = c.yPos + c.yVel;
+                c.xPos = c.xPos + c.xVel;
+                mvaddch(c.yPos, c.xPos, c.symbol);
+                refresh();
+        }
+        return c;
+}
+
+Character checkEnemyVel(Character e)
+{
+        if (e.yVel == 1 && mvinch(e.yPos+1, e.xPos) != ' ')
+        {
+                e.yVel = 0;
+                e.xVel = 1;
+        }
+        else if (e.xVel == 1 && mvinch(e.yPos, e.xPos+1) != ' ')
+        {
+                e.yVel = -1;
+                e.xVel = 0;
+        }
+        else if (e.yVel == -1 && mvinch(e.yPos-1, e.xPos) != ' ')
+        {
+                e.yVel = 0;
+                e.xVel = -1;
+        }
+        else if (e.xVel == -1 && mvinch(e.yPos, e.xPos-1) != ' ')
+        {
+                e.yVel = 1;
+                e.xVel = 0;
+        }
+        return e;
+}
+
 
 int main(){
 
         WINDOW *w;
-        int ch;
-        Player p;
-        Enemy e;
-        //initialize ncurses
+        // initialize ncurses
         initscr();
-
         //add no echo so that entered keys are not printed to the screen
         noecho();
-
         //height, width, start_y, start_x
-        w = newwin(30,30, 1, 1);
-
+        w = newwin(50,50, 1, 1);
         //any window creation or  box plot must be followed by a refresh for changes
         //to take effect
-        refresh();
-
-        /*
-       use wborder to specify:
-       left, right, top, bottom borders
-       top left, top right, bottom left, bottom right corners
-    */
-
-        wborder(w,'|','|','-','-','+','+','+','+');
         wrefresh(w);
-        char h='|';
 
-        /* These are placed here since the above border is not recognized
-           by mvinch. This is done so the check in the while loop for
-           the border will work
-        */
+        mvprintw(10, 3,"%c",'-');
+        mvprintw(9, 10, "%c", '|');
+        mvprintw(4, 9, "%c", '-');
+        mvprintw(5, 2, "%c", '|');
 
-        mvprintw(25,30,"%c",h);
-        mvprintw(26,30,"%c",h);
-        mvprintw(27,30,"%c",h);
+        Character p = createPlayer();
+        Character e[4];
+        e[0] = createEnemy('1');
+        e[1] = createEnemy('2');
+        e[2] = createEnemy('3');
+        e[3] = createEnemy('4');
 
-        p = createPlayer();
-        e = createEnemy();
-        mvaddch(p.y, p.x, p.symbol);
-        mvaddch(e.yPos, e.xPos, e.symbol);
-
-        keypad(stdscr, TRUE);
-        refresh();
         /* Direction checking:
            KEY_RIGHT
            KEY_UP
            KEY_DOWN
            KEY_LEFT
         */
-
-        time_t lastmove = time(NULL);
+        keypad(stdscr, TRUE);
         nodelay(stdscr, TRUE);
-
+        int ch;
+        time_t stopped = 0;
         while (1)
         {
                 ch = getch();
@@ -126,75 +123,73 @@ int main(){
                 {
                         if (ch == KEY_RIGHT)
                         {
-                                if (mvinch(p.y, p.x+1) == ' ') // There is an empty spot to the right, so player can move.
-                                {
-                                        p = movePlayer(p, 0, 1);
-                                }
+                                p.xVel = 2;
+                                p.yVel = 0;
                         }
                         else if (ch == KEY_LEFT)
                         {
-                                if (mvinch(p.y, p.x-1) == ' ') // There is an empty spot to the right, so player can move.
-                                {
-                                        p = movePlayer(p, 0, -1);
-                                }
+                                p.xVel = -2;
+                                p.yVel = 0;
                         }
                         else if (ch == KEY_UP)
                         {
-                                if (mvinch(p.y-1, p.x) == ' ') // There is an empty spot to the right, so player can move.
-                                {
-                                        p = movePlayer(p, -1, 0);
-                                }
+                                p.xVel = 0;
+                                p.yVel = -1;
                         }
                         else if (ch == KEY_DOWN)
                         {
-                                if (mvinch(p.y+1, p.x) == ' ') // There is an empty spot to the right, so player can move.
-                                {
-                                        p = movePlayer(p, 1, 0);
-                                }
+                                p.xVel = 0;
+                                p.yVel = 1;
                         }
                         else if (ch == 'q')
                         {
                                 break;
                         }
+                        else if (ch == 'p')
+                        {
+                                break;
+                        }
+                        else if (ch == '1')
+                        {
+                                e[0].yVel = 0;
+                                e[0].xVel = 0;
+                                e[2].yVel = 0;
+                                e[2].xVel = 0;
+                                stopped = time(NULL);
+                        }
+                        else if (ch == '2')
+                        {
+                                e[1].yVel = 0;
+                                e[1].xVel = 0;
+                                e[3].yVel = 0;
+                                e[3].xVel = 0;
+                                stopped = time(NULL);
+                        }
 
                 }
-                if (time(NULL) - lastmove <= 1)
+                p = moveCharacter(p);
+                for (int i = 0; i < 4; i++)
                 {
-                        e = moveEnemy(e);
-                        if (e.yPos == 15 && e.yVel == -1)
-                        {
-                                e.yVel = 0;
-                                e.xVel = 1;
-                        }
-                        else if (e.xPos == 15 && e.xVel == 1)
-                        {
-                                e.yVel = 1;
-                                e.xVel = 0;
-                        }
-                        else if (e.yPos == 20 && e.yVel == 1)
-                        {
-                                e.yVel = 0;
-                                e.xVel = -1;
-                        }
-                        else if (e.xPos == 10 && e.xVel == -1)
-                        {
-                                e.yVel = -1;
-                                e.xVel = 0;
-                        }
-                        lastmove = time(NULL);
-                        move(30, 30);
-                        printw("x = %d, y = %d\n", e.xPos, e.yPos);
-                        move(e.yPos, e.xPos);
+                        e[i] = moveCharacter(e[i]);
+                        e[i] = checkEnemyVel(e[i]);
                 }
-                 refresh();
-                 napms(20);
-        //       sleep(3);
+                if (stopped > 0)
+                {
+                        if (time(NULL) - stopped > 5)
+                        {
+                                stopped = 0;
+                                for (int i = 0; i < 4; i++)
+                                {
+                                        if (e[i].xVel == 0 && e[i].yVel == 0)
+                                        {
+                                                e[i].xVel = 1;
+                                        }
+                                }
+                        }
+                }
+                refresh();
+                napms(100); // pause program
         }
-
-        //follow with a getch (get a single keystroke from the user)
-    //otherwise you will not see any change on the screen
-        getch();
         endwin();
-
         return 0;
 }
