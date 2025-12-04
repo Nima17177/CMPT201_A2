@@ -5,6 +5,6 @@
 #include <ncurses.h>
 #include <string.h>
 
-void createLevelEasy(WINDOW *w);
-void createLevelHard(WINDOW *w);
-void run(sprite player, int enemyCount sprite enemies[enemyCount]);
+void createLevelEasy(WINDOW *w); 
+void createLevelHard(WINDOW *w); 
+void run(sprite player, int enemyCount sprite enemies[enemyCount]);  

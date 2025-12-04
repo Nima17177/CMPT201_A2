@@ -11,9 +11,10 @@ OBJmain = main.o map.o
 APP = a.out
 
 $(APP): $(OBJmain) $(OBJmod) $(HDRmod)
-        $(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
-run:
-        ./a.out
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+run: 
+	./a.out
 
 %.o: %.c %.h
-        $(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c $<
+
