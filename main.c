@@ -1,4 +1,4 @@
-//#define "levels.h"
+#include "map.h"
 #include <stdio.h>
 #include <ncurses.h>
 #include <string.h>
@@ -133,16 +133,23 @@ int main(void)
         box(w, 0, 0); // Default border to window.
         wrefresh(w);
         refresh();
-        splashPage(w);
-        // Call level.
-        if (mvinch(2, 68) == ACS_HLINE)
+        //splashPage(w);
+        /*while (1)
         {
-                printf("True");
-        }
-        else
-        {
-                printf("False");
-        }
+                char c = getch();
+                if (c == 'e')
+                {
+                        createLevelEasy(w);
+                        break;
+                }
+                else if (c == 'h')
+                {
+                        createLevelHard(w);
+                        break;
+                }
+        }*/
+        createMapEasy(w);
+
         getch();
         endwin();
         return 0;

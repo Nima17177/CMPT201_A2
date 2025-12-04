@@ -1,2 +1,23 @@
-APP:
-        gcc -Wall -std=c11 test.c -lncurses -ltinfo -lm -lc
+CC = gcc
+CFLAGS = -Wall -g -std=c11
+LDFLAGS = -lm -lc -lncurses -ltinfo
+
+HDRmod = map.h
+SRCmod = map.c
+OBJmod = map.o
+
+SRCmain = main.c
+OBJmain = main.o map.o
+APP = a
+
+SRCtest = testing/unitTest.c
+OBJtest = $(SRCtest:.c=.o)
+TEST = testing/test
+
+
+$(APP): $(OBJmain) $(OBJmod) $(HDRmod)
+        $(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+        ./a.out
+
+%.o: %.c %.h
+        $(CC) $(CFLAGS) -c $<
