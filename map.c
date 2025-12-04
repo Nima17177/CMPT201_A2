@@ -6,7 +6,7 @@
 
 void createMapEasy(WINDOW *w)
 {
-    //wborder(w, ACS_VLINE, ACS_VLINE, ACS_HLINE, ACS_HLINE, ACS_ULCORNER, ACS_URCORNER, ACS_LLCORNER, ACS_LRCORNER);
+    wborder(w, ACS_VLINE, ACS_VLINE, ACS_HLINE, ACS_HLINE, ACS_ULCORNER, ACS_URCORNER, ACS_LLCORNER, ACS_LRCORNER);
 
     /*int top_y = MAP_Y /4;
     int buttom_y = MAP_Y *3/4;
