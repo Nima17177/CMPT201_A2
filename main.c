@@ -128,7 +128,7 @@ int main(void)
         WINDOW *w;
         initscr(); // Initialize window
         noecho(); // Entered keys are not printed on the screen.
-        curs_set(FALSE); // Don't display a cursor
+        //curs_set(FALSE); // Don't display a cursor
         w = newwin(MAXY, MAXX, 1, 1); // Window size
         box(w, 0, 0); // Default border to window.
         wrefresh(w);
@@ -149,7 +149,6 @@ int main(void)
                 }
         }*/
         createMapEasy(w);
-
         getch();
         endwin();
         return 0;

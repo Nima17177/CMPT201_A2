@@ -8,15 +8,11 @@ OBJmod = map.o
 
 SRCmain = main.c
 OBJmain = main.o map.o
-APP = a
-
-SRCtest = testing/unitTest.c
-OBJtest = $(SRCtest:.c=.o)
-TEST = testing/test
-
+APP = a.out
 
 $(APP): $(OBJmain) $(OBJmod) $(HDRmod)
         $(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+run:
         ./a.out
 
 %.o: %.c %.h
