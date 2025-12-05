@@ -8,38 +8,74 @@ void createMapEasy(WINDOW *w)
 {
     wborder(w, ACS_VLINE, ACS_VLINE, ACS_HLINE, ACS_HLINE, ACS_ULCORNER, ACS_URCORNER, ACS_LLCORNER, ACS_LRCORNER);
     // Title
-    mvprintw(2, (MAP_X / 2) - 5, "PAC-MAN");
+    mvwprintw(w, 2, (MAP_X / 2) - 5, "PAC-MAN");
     
-    // Maze layout for easy mode
-         mvprintw(7, 20, "+-----------------------------------------+");
-         mvprintw(8, 20, "|     |    |    |         |    |    |     |");
-         mvprintw(9, 20, "|     |   ---   |   ---   |   ---   |     |");
-        mvprintw(10, 20, "|   |---|     |---|     |---|     |---|   |");
-        mvprintw(11, 20, "|-|       |-|       |-|       |-|       |-|");
-        mvprintw(12, 20, "|   |---|     |---|     |---|     |---|   |");
-        mvprintw(13, 20, "|-|       |-|       |-|       |-|       |-|");
-        mvprintw(14, 20, "|   |---|     |---|     |---|     |---|   |");
-        mvprintw(15, 20, "|-|       |-|       |-|       |-|       |-|");
-        mvprintw(16, 20, "|   |---|     |---|     |---|     |---|   |");
-        mvprintw(17, 20, "|-|       |-|       |-|       |-|       |-|");
-        mvprintw(18, 20, "|   |---|     |---|     |---|     |---|   |");
-        mvprintw(19, 20, "|-|       |-|       |-|       |-|       |-|");
-        mvprintw(20, 20, "|   |---|     |---|     |---|     |---|   |");
-        mvprintw(21, 20, "|   |---|     |---|     |---|     |---|   |");
-        mvprintw(22, 20, "|-|       |-|       |-|       |-|       |-|");
-        mvprintw(23, 20, "|   |---|     |---|     |---|     |---|   |");
-        mvprintw(24, 20, "|     |   ---   |         |   ---   |     |");
-        mvprintw(25, 20, "|     |    |    |         |    |    |     |");
-        mvprintw(26, 20, "+-----------------------------------------+");
+    // Maze layout for easy mod9                                       49
+         mvwprintw(w, 7, 20, "+-----------------------------------------+");
+         mvwprintw(w, 8, 20, "|O    |    |    |         |    |    |    O|");
+         mvwprintw(w, 9, 20, "|     |   ---   |   ---   |   ---   |     |");
+        mvwprintw(w, 10, 20, "|   |---|     |---|     |---|     |---|   |");
+        mvwprintw(w, 11, 20, "|-|       |-|       |-|       |-|       |-|");
+        mvwprintw(w, 12, 20, "|   |---|     |---|     |---|     |---|   |");
+        mvwprintw(w, 13, 20, "|-|       |-|       |-|       |-|       |-|");
+        mvwprintw(w, 14, 20, "|   |---|     |---|     |---|     |---|   |");
+        mvwprintw(w, 15, 20, "|-|       |-|       |-|       |-|       |-|");
+        mvwprintw(w, 16, 20, "|P  |---|     |---|     |---|     |---|  P|");
+        mvwprintw(w, 17, 20, "|-|       |-|       |-|       |-|       |-|");
+        mvwprintw(w, 18, 20, "|   |---|     |---|     |---|     |---|   |");
+        mvwprintw(w, 19, 20, "|-|       |-|       |-|       |-|       |-|");
+        mvwprintw(w, 20, 20, "|   |---|     |---|     |---|     |---|   |");
+        mvwprintw(w, 21, 20, "|-|       |-|       |-|       |-|       |-|");
+        mvwprintw(w, 22, 20, "|   |---|     |---|     |---|     |---|   |");
+        mvwprintw(w, 23, 20, "|     |   ---   |         |   ---   |     |");
+        mvwprintw(w, 24, 20, "|O    |    |    |         |    |    |    O|");
+        mvwprintw(w, 25, 20, "+-----------------------------------------+");
 
         wrefresh(w);
     refresh();
 }
 
-bool isWall(int y, int x)
+bool isWall(WINDOW *w, int y, int x) {
+    if (mvwinch(w, y, x) == '|') return true;
+    if (mvwinch(w, y, x) == '-') return true;
+    if (mvwinch(w, y, x) == '+') return true;
+    return false;
+}
+
+void isPortal(WINDOW *w, int *y, int *x) 
 {
-    if (mvinch(y, x) == '|') return true;
-    if (mvinch(y, x) == '-') return true;
-    if (mvinch(y, x) == '+') return true;
+    if (mvwinch(w, *y, *x) == 'O')
+    {
+        if (*y == 8 && *x == 21) {
+            *y = 24;
+            *x = 49;
+        } 
+        else if (*y == 24 && *x == 49) {
+            *y = 8;
+            *x = 21;
+        }
+        else if (*y == 8 && *x == 49) {
+            *y = 24;
+            *x = 21;
+        }
+        else if (*y == 24 && *x == 21) {
+            *y = 8;
+            *x = 49;
+        }
+
+    }
+    else {
+        *y = -1;
+        *x = -1;
+    }
+}
+
+void isPower(WINDOW *w, int y, int x) 
+{
+    if (mvwinch(w, y, x) == 'P') 
+    {
+        mvwaddch(w, y, x, ' ');
+        return true;
+    }
     return false;
 }
