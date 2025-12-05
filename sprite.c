@@ -20,7 +20,7 @@ sprite createPlayer(WINDOW *w)
         p.yVel = 1;
         p.xVel = 0;
         p.frozen = false;
-        p.symbol = 'P';
+        p.symbol = 'X';
         mvwaddch(w, p.yPos, p.xPos, p.symbol);
         wrefresh(w);
         return p;
@@ -42,7 +42,7 @@ sprite createEnemy(char c, WINDOW *w)
 
 sprite moveSprite(sprite s, WINDOW *w)
 {
-        if ((s.frozen == false) && (((s.yVel != 0) && (mvwinch(w, (s.yPos+s.yVel), s.xPos) == ' ')) || ((s.xVel != 0) && (mvwinch(w, s.yPos, (s.xPos+s.xVel)) == ' '))))
+        if ((s.frozen == false) && (isWall(w, s.yPos+s.yVel, s.xPos+s.xVel) == false))
         {
                 mvwaddch(w, s.yPos, s.xPos, ' ');
                 s.yPos = s.yPos + s.yVel;
@@ -55,7 +55,7 @@ sprite moveSprite(sprite s, WINDOW *w)
 
 sprite checkEnemyVel(sprite e, WINDOW *w)
 {
-        if (mvwinch(w, e.yPos+e.yVel, e.xPos+e.xVel) != ' ')
+        if (isWall(w, e.yPos+e.yVel, e.xPos+e.xVel) == true)
         {
                 int randNum = rand() % 2;
                 if (e.yVel == 0)
