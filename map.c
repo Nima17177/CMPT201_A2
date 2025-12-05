@@ -35,3 +35,11 @@ void createMapEasy(WINDOW *w)
         wrefresh(w);
     refresh();
 }
+
+bool isWall(int y, int x)
+{
+    if (mvinch(y, x) == '|') return true;
+    if (mvinch(y, x) == '-') return true;
+    if (mvinch(y, x) == '+') return true;
+    return false;
+}
