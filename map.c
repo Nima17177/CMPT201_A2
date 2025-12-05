@@ -70,7 +70,7 @@ void isPortal(WINDOW *w, int *y, int *x)
     }
 }
 
-void isPower(WINDOW *w, int y, int x) 
+bool isPower(WINDOW *w, int y, int x) 
 {
     if (mvwinch(w, y, x) == 'P') 
     {
