@@ -75,6 +75,7 @@ bool isPower(WINDOW *w, int y, int x)
     if (mvwinch(w, y, x) == 'P') 
     {
         mvwaddch(w, y, x, ' ');
+        wrefresh(w);
         return true;
     }
     return false;
