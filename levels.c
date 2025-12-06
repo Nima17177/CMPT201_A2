@@ -102,7 +102,7 @@ void run(WINDOW *w, sprite player, int enemyCount, sprite enemies[enemyCount])
                                         stoppedTime = time(NULL);
                                         stoppedEnemy = 1;
                                 }
-                                else if (ch == 'w')
+                                else if (ch == 32)
                                 {
                                         int *y = malloc(sizeof(int));
                                         int *x = malloc(sizeof(int));
