@@ -42,40 +42,40 @@ bool isWall(WINDOW *w, int y, int x) {
     return false;
 }
 
-void isPortal(WINDOW *w, int *y, int *x) 
+void isPortal(WINDOW *w, int *y, int *x)
 {
-    if (mvwinch(w, *y, *x) == 'O')
-    {
+    //if (mvwinch(w, *y, *x) == 'O')
+    //{
         if (*y == 8 && *x == 19) {
             *y = 24;
-            *x = 47;
-        } 
-        else if (*y == 24 && *x == 47) {
+            *x = 59;
+        }
+        else if (*y == 24 && *x == 59) {
             *y = 8;
             *x = 19;
         }
-        else if (*y == 8 && *x == 47) {
+        else if (*y == 8 && *x == 59) {
             *y = 24;
             *x = 19;
         }
         else if (*y == 24 && *x == 19) {
             *y = 8;
-            *x = 47;
+            *x = 59;
         }
 
-    }
+    //}
     else {
         *y = -1;
         *x = -1;
     }
 }
 
-bool isPower(WINDOW *w, int y, int x) 
+bool isPower(WINDOW *w, char c)
 {
-    if (mvwinch(w, y, x) == 'P') 
+    if (c == 'P')
     {
-        mvwaddch(w, y, x, ' ');
-        wrefresh(w);
+        //mvwaddch(w, y, x, ' ');
+        //wrefresh(w);
         return true;
     }
     return false;

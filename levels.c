@@ -16,44 +16,39 @@
 #include <time.h>
 #include <unistd.h>
 #include <curses.h>
+#include <stdlib.h>
 
 void createLevelEasy(WINDOW *w)
 {
         createMapEasy(w);
-        sprite player = createPlayer(w);
-        sprite enemies[2];
-        enemies[0] = createEnemy('1', w);
-        enemies[1] = createEnemy('2', w);
-        run(player, 2, enemies, w);
+        createSprites(w, 2);
 }
 
 void createLevelHard(WINDOW *w)
 {
         createMapEasy(w);
-        sprite player = createPlayer(w);
-        sprite enemies[4];
-        enemies[0] = createEnemy('1', w);
-        enemies[1] = createEnemy('2', w);
-        enemies[2] = createEnemy('3', w);
-        enemies[3] = createEnemy('4', w);
-        run(player, 4, enemies, w);
+        createSprites(w, 4);
 }
 
-void run(sprite player, int enemyCount, sprite enemies[enemyCount], WINDOW *w)
+void createSprites(WINDOW *w, int enemyCount)
 {
-        if (has_colors())
+        sprite player = createPlayer(w);
+        sprite enemies[enemyCount];
+        for (int i = 0; i < enemyCount; i++)
         {
-                start_color();
-                init_pair(1, COLOR_RED, COLOR_BLACK);
-                init_pair(2, COLOR_CYAN, COLOR_BLACK);
-                init_pair(3, COLOR_WHITE, COLOR_BLACK);
+                enemies[i] = createEnemy(w, i);
         }
+        run(w, player, enemyCount, enemies);
+}
+
+void run(WINDOW *w, sprite player, int enemyCount, sprite enemies[enemyCount])
+{
         keypad(stdscr, TRUE);
         nodelay(stdscr, TRUE);
         int ch;
         time_t stoppedTime = 0;
-        int stage = 0;
         int stoppedEnemy = -1;
+        int stage = 0;
         while (stage >= 0)
         {
                 ch = getch();
@@ -89,31 +84,76 @@ void run(sprite player, int enemyCount, sprite enemies[enemyCount], WINDOW *w)
                                         player.xVel = 0;
                                         player.yVel = 1;
                                 }
+                                if ((ch == '1') && (isPower(w, player.pixel) == true) && (stoppedTime == 0))
+                                {
+                                        for (int i = 0; i < enemyCount; i+=2)
+                                        {
+                                                enemies[i].frozen = true;
+                                        }
+                                        stoppedTime = time(NULL);
+                                        stoppedEnemy = 0;
+                                }
+                                else if ((ch == '2') && (isPower(w, player.pixel) == true) && (stoppedTime == 0))
+                                {
+                                        for (int i = 1; i < enemyCount; i+=2)
+                                        {
+                                                enemies[i].frozen = true;
+                                        }
+                                        stoppedTime = time(NULL);
+                                        stoppedEnemy = 1;
+                                }
+                                else if (ch == 'w')
+                                {
+                                        int *y = malloc(sizeof(int));
+                                        int *x = malloc(sizeof(int));
+                                        *y = player.yPos;
+                                        *x = player.xPos;
+                                        isPortal(w, y, x);
+                                        if (*y != -1)
+                                        {
+                                                mvwaddch(w, player.yPos, player.xPos, player.pixel);
+                                                player.yPos = *y;
+                                                player.xPos = *x;
+                                                mvwaddch(w, player.yPos, player.xPos, player.symbol);
+                                        }
+                                        free(y);
+                                        free(x);
+                                }
                         }
                 }
                 if (stage == 0)
-                {       //wattron(w, COLOR_PAIR(2));
-                        player = moveSprite(player, w);
-                        //wattron(w, COLOR_PAIR(1));
+                {
+                        if (isWall(w, player.yPos+player.yVel, player.xPos+player.xVel) == false)
+                        {
+                                player = moveSprite(w, player);
+                        }
                         for (int i = 0; i < enemyCount; i++)
                         {
-                                enemies[i] = moveSprite(enemies[i], w);
-                                enemies[i] = checkEnemyVel(enemies[i], w);
+                                int randNum0 = rand() % 5;
+                                if ((isWall(w, enemies[i].yPos+enemies[i].yVel, enemies[i].xPos+enemies[i].xVel) == true) || (randNum0 == 0) || (mvwinch(w, enemies[i].yPos+enemies[i].yVel, enemies[i].xPos+enemies[i].xVel) == 'E'))
+                                {
+                                        enemies[i] = changeVel(enemies[i]);
+                                }
+                                else
+                                {
+                                        if (enemies[i].frozen == false)
+                                        {
+                                                enemies[i] = moveSprite(w, enemies[i]);
+                                        }
+                                }
                         }
-                        //wattron(w, COLOR_PAIR(3));
-                        /*if (stopped > 0)
+                        if (stoppedTime > 0)
                         {
-                                if (time(NULL) - stopped > 0)
+                                if (time(NULL) - stoppedTime >= 5)
                                 {
-                                stopped = 0;
-                                p = movecharacter(p);
+                                        stoppedTime = 0;
+                                        for (int i = stoppedEnemy; i < enemyCount; i+=2)
+                                        {
+                                                enemies[i].frozen = false;
+                                        }
+                                        stoppedTime = 0;
                                 }
-                                for (int i = 0; i < enemyCount; i++)
-                                {
-                                        enemies[i] = moveCharacter(e[i]);
-                                        enemies[i] = checkEnemyVel(e[i]);
-                                }
-                        }*/
+                        }
                 }
                 napms(150);
         }

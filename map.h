@@ -17,6 +17,6 @@ bool isWall(WINDOW *w, int y, int x);
 void isPortal(WINDOW *w, int *y, int *x);
 
 // Returns if coordinates are a power up; also removed power up from map. 
-bool isPower(WINDOW *w, int y, int x); 
+bool isPower(WINDOW *w, int y, char c); 
 
 #endif 

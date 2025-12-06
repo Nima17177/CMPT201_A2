@@ -14,10 +14,11 @@ typedef struct
         int yVel;
         int xVel;
         bool frozen;
+        char pixel; // Pixel that is under the sprite. Redraw it after the sprite moves.
         char symbol;
 } sprite;
 
 sprite createPlayer(WINDOW *w);
-sprite createEnemy(char c, WINDOW *w);
-sprite moveSprite(sprite s, WINDOW *w);
-sprite checkEnemyVel(sprite e, WINDOW *w);
+sprite createEnemy(WINDOW *w, int c);
+sprite moveSprite(WINDOW *w, sprite s);
+sprite changeVel(sprite e);

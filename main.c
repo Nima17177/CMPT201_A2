@@ -139,7 +139,7 @@ int main(void)
                 {
                         wclear(w);
                         endwin();
-                        w = newwin(MAXY, MAXX, 1, 1);
+                        WINDOW *w = newwin(MAXY, MAXX, 1, 1);
                         box(w, 0, 0);
                         wrefresh(w);
                         createLevelEasy(w);
@@ -147,6 +147,11 @@ int main(void)
                 }
                 else if (c == 'h')
                 {
+                        wclear(w);
+                        endwin();
+                        WINDOW *w = newwin(MAXY, MAXX, 1, 1);
+                        box(w, 0, 0);
+                        wrefresh(w);
                         createLevelHard(w);
                         break;
                 }
