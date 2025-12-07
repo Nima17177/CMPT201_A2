@@ -11,39 +11,54 @@
 sprite createPlayer(WINDOW *w)
 {
         sprite p;
-        p.yPos = 24;
-        p.xPos = 41;
+        p.yPos = 0;
+        p.xPos = 0;
         p.yVel = 1;
         p.xVel = 0;
-        p.frozen = false;
-        p.pixel = ' ';
+        p.life = 3;
+        p.tile = ' ';
         p.symbol = 'X';
-        mvwaddch(w, p.yPos, p.xPos, p.symbol);
-        wrefresh(w);
         return p;
 }
 
 sprite createEnemy(WINDOW *w, int c)
 {
         sprite e;
-        e.yPos = 8;
-        e.xPos = 37 + (c*1.5);
+        e.yPos = 0;
+        e.xPos = 0;
         e.yVel = 1;
         e.xVel = 0;
-        e.frozen = false;
-        e.pixel = ' ';
+        e.life = 0;
+        e.tile = ' ';
         e.symbol = 'E';
-        mvwaddch(w, e.yPos, e.xPos, e.symbol);
-        wrefresh(w);
         return e;
+}
+
+void resetSprites(WINDOW *w, sprite *player, int enemyCount, sprite *enemies)
+{
+        mvwaddch(w, player->yPos, player->xPos, ' ');
+        player->yPos = 24;
+        player->xPos = 41;
+        mvwaddch(w, player->yPos, player->xPos, player->symbol);
+        for (int i = 0; i < enemyCount; i++)
+        {
+                if (enemies[i].life != 2)
+                {
+                        mvwaddch(w, enemies[i].yPos, enemies[i].xPos, ' ');
+                        enemies[i].yPos = 8;
+                        enemies[i].xPos = 37 + (i * 1.5);
+                        mvwaddch(w, enemies[i].yPos, enemies[i].xPos, enemies[i].symbol);
+                }
+        }
+        wrefresh(w);
 }
 
 sprite moveSprite(WINDOW *w, sprite s)
 {
-        mvwaddch(w, s.yPos, s.xPos, s.pixel);
+        mvwaddch(w, s.yPos, s.xPos, s.tile);
         s.yPos = s.yPos + s.yVel;
         s.xPos = s.xPos + s.xVel;
-        s.pixel = mvwinch(w, s.yPos, s.xPos);
+        s.tile = mvwinch(w, s.yPos, s.xPos);
         mvwaddch(w, s.yPos, s.xPos, s.symbol);
         wrefresh(w);
         return s;

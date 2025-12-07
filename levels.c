@@ -36,8 +36,9 @@ void createSprites(WINDOW *w, int enemyCount)
         sprite enemies[enemyCount];
         for (int i = 0; i < enemyCount; i++)
         {
-                enemies[i] = createEnemy(w, i);
+                enemies[i] = createEnemy(w, i+1);
         }
+        resetSprites(w, &player, enemyCount, enemies);
         run(w, player, enemyCount, enemies);
 }
 
@@ -84,40 +85,43 @@ void run(WINDOW *w, sprite player, int enemyCount, sprite enemies[enemyCount])
                                         player.xVel = 0;
                                         player.yVel = 1;
                                 }
-                                if ((ch == '1') && (isPower(w, player.pixel) == true) && (stoppedTime == 0))
+                                if ((ch == '1') && (isPower(w, player.tile) == true) && (stoppedTime == 0))
                                 {
                                         for (int i = 0; i < enemyCount; i+=2)
                                         {
-                                                enemies[i].frozen = true;
+                                                if (enemies[i].life == 0)
+                                                {
+                                                        enemies[i].life = 1;
+                                                }
                                         }
                                         stoppedTime = time(NULL);
                                         stoppedEnemy = 0;
                                 }
-                                else if ((ch == '2') && (isPower(w, player.pixel) == true) && (stoppedTime == 0))
+                                else if ((ch == '2') && (isPower(w, player.tile) == true) && (stoppedTime == 0))
                                 {
                                         for (int i = 1; i < enemyCount; i+=2)
                                         {
-                                                enemies[i].frozen = true;
+                                                if (enemies[i].life == 0)
+                                                {
+                                                        enemies[i].life = 1;
+                                                }
                                         }
                                         stoppedTime = time(NULL);
                                         stoppedEnemy = 1;
                                 }
                                 else if (ch == 32)
                                 {
-                                        int *y = malloc(sizeof(int));
-                                        int *x = malloc(sizeof(int));
-                                        *y = player.yPos;
-                                        *x = player.xPos;
-                                        isPortal(w, y, x);
-                                        if (*y != -1)
+                                        int y, x;
+                                        y = player.yPos;
+                                        x = player.xPos;
+                                        isPortal(w, &y, &x);
+                                        if (y != -1)
                                         {
-                                                mvwaddch(w, player.yPos, player.xPos, player.pixel);
-                                                player.yPos = *y;
-                                                player.xPos = *x;
+                                                mvwaddch(w, player.yPos, player.xPos, player.tile);
+                                                player.yPos = y;
+                                                player.xPos = x;
                                                 mvwaddch(w, player.yPos, player.xPos, player.symbol);
                                         }
-                                        free(y);
-                                        free(x);
                                 }
                         }
                 }
@@ -129,14 +133,14 @@ void run(WINDOW *w, sprite player, int enemyCount, sprite enemies[enemyCount])
                         }
                         for (int i = 0; i < enemyCount; i++)
                         {
-                                int randNum0 = rand() % 5;
-                                if ((isWall(w, enemies[i].yPos+enemies[i].yVel, enemies[i].xPos+enemies[i].xVel) == true) || (randNum0 == 0) || (mvwinch(w, enemies[i].yPos+enemies[i].yVel, enemies[i].xPos+enemies[i].xVel) == 'E'))
+                                if (enemies[i].life == 0)
                                 {
-                                        enemies[i] = changeVel(enemies[i]);
-                                }
-                                else
-                                {
-                                        if (enemies[i].frozen == false)
+                                        int randNum0 = rand() % 5;
+                                        if ((randNum0 == 0) || (isWall(w, enemies[i].yPos+enemies[i].yVel, enemies[i].xPos+enemies[i].xVel) == true) || (mvwinch(w, enemies[i].yPos+enemies[i].yVel, enemies[i].xPos+enemies[i].xVel) == enemies[i].symbol))
+                                        {
+                                                enemies[i] = changeVel(enemies[i]);
+                                        }
+                                        else
                                         {
                                                 enemies[i] = moveSprite(w, enemies[i]);
                                         }
@@ -144,14 +148,39 @@ void run(WINDOW *w, sprite player, int enemyCount, sprite enemies[enemyCount])
                         }
                         if (stoppedTime > 0)
                         {
-                                if (time(NULL) - stoppedTime >= 5)
+                                if (time(NULL) - stoppedTime >= 60)
                                 {
                                         stoppedTime = 0;
                                         for (int i = stoppedEnemy; i < enemyCount; i+=2)
                                         {
-                                                enemies[i].frozen = false;
+                                                if (enemies[i].life == 1)
+                                                {
+                                                        enemies[i].life = 0;
+                                                }
                                         }
-                                        stoppedTime = 0;
+                                }
+                        }
+                        for (int i = 0; i < enemyCount; i++)
+                        {
+                                if ((enemies[i].life != 2) && ((enemies[i].tile == player.symbol) || (player.tile == enemies[i].symbol)))
+                                {
+                                        enemies[i].tile = ' ';
+                                        player.tile = ' ';
+                                        if (enemies[i].life == 1)
+                                        {
+                                                enemies[i].life = 2;
+                                                mvwaddch(w, enemies[i].yPos, enemies[i].xPos, ' ');
+                                        }
+                                        else if (enemies[i].life == 0)
+                                        {
+                                                resetSprites(w, &player, enemyCount, enemies);
+                                                player.life--;
+                                                if (player.life == 0)
+                                                {
+                                                        stage = -1;
+                                                }
+                                                break;
+                                        }
                                 }
                         }
                 }
