@@ -94,11 +94,12 @@ void createMapUi(WINDOW *w)
         init_pair(6, COLOR_CYAN, COLOR_BLACK);
         init_pair(7, COLOR_WHITE, COLOR_BLACK);
     }
-    wattron(w, COLOR_PAIR(4));
-    mvwprintw(w, 2, (MAP_X / 2) - 5, "PAC-MAN");
-    // "Controls", "Use <arrows> to move player", "Press <space> to activate portal", "After collecting a powerup, press <1> or <2> to freeze half of the enemies"
-    //mvwprintw(w, 5,  
-    wattroff(w, COLOR_PAIR(4));
+    wattron(w, COLOR_PAIR(2));
+    mvwprintw(w, 2, (MAP_X / 2) - 5, "PAC-MAN"); 
+    mvwprintw(w, 26, 27, "Use <arrows> to move player"); 
+    mvwprintw(w, 27, 24, "Press <space> to activate portal");
+    mvwprintw(w, 28, 3, "After collecting a powerup, press <1> or <2> to freeze half of the enemies");
+    wattroff(w, COLOR_PAIR(2));
     wrefresh(w);
 }
 
@@ -118,7 +119,7 @@ void decrementLives(WINDOW *w, int *lives)
         (*lives)--;
     }
     wattron(w, COLOR_PAIR(4));
-    mvwprintw(w, 1, MAP_X - 15, "Lives: %d  ", *lives);
+    mvwprintw(w, 1, 8, "Lives: %d  ", *lives);
     wattroff(w, COLOR_PAIR(4));
     wrefresh(w);
 }
@@ -128,7 +129,7 @@ void decrementEnemies(WINDOW *w, int *enemies)
         (*enemies)--;
     }
     wattron(w, COLOR_PAIR(4));
-    mvwprintw(w, 1, MAP_X / 2 + 10, "Enemies: %d  ", *enemies);
+    mvwprintw(w, 1, 62, "Enemies: %d  ", *enemies);
     wattroff(w, COLOR_PAIR(4));
     wrefresh(w);
 }
