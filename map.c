@@ -30,7 +30,6 @@ void createMapEasy(WINDOW *w)
         mvwprintw(w, 23, 18, "|     |   ---   |         |   ---   |     |");
         mvwprintw(w, 24, 18, "|O    |    |    |         |    |    |    O|");
         mvwprintw(w, 25, 18, "+-----------------------------------------+");
-        status(w, 3, 5);
         wrefresh(w);
     refresh();
 }
@@ -44,29 +43,21 @@ bool isWall(WINDOW *w, int y, int x) {
 
 void isPortal(WINDOW *w, int *y, int *x)
 {
-    //if (mvwinch(w, *y, *x) == 'O')
-    //{
-        if (*y == 8 && *x == 19) {
-            *y = 24;
-            *x = 59;
-        }
-        else if (*y == 24 && *x == 59) {
-            *y = 8;
-            *x = 19;
-        }
-        else if (*y == 8 && *x == 59) {
-            *y = 24;
-            *x = 19;
-        }
-        else if (*y == 24 && *x == 19) {
-            *y = 8;
-            *x = 59;
-        }
-
-    //}
-    else {
-        *y = -1;
-        *x = -1;
+    if (*y == 8 && *x == 19) {
+        *y = 24;
+        *x = 59;
+    }
+    else if (*y == 24 && *x == 59) {
+        *y = 8;
+        *x = 19;
+    }
+    else if (*y == 8 && *x == 59) {
+        *y = 24;
+        *x = 19;
+    }
+    else if (*y == 24 && *x == 19) {
+        *y = 8;
+        *x = 59;
     }
 }
 
@@ -115,9 +106,7 @@ void status(WINDOW *w, int lives, int enemies)
 
 void decrementLives(WINDOW *w, int *lives)
 {   
-    if (*lives > 0) {
-        (*lives)--;
-    }
+    (*lives)--;
     wattron(w, COLOR_PAIR(4));
     mvwprintw(w, 1, 8, "Lives: %d  ", *lives);
     wattroff(w, COLOR_PAIR(4));
@@ -125,9 +114,7 @@ void decrementLives(WINDOW *w, int *lives)
 }
 void decrementEnemies(WINDOW *w, int *enemies)
 {   
-    if (*enemies > 0) {
-        (*enemies)--;
-    }
+    (*enemies)--;
     wattron(w, COLOR_PAIR(4));
     mvwprintw(w, 1, 62, "Enemies: %d  ", *enemies);
     wattroff(w, COLOR_PAIR(4));
