@@ -1,5 +1,5 @@
-#ifndef SPRITE_H
-#define SPRITE_H
+#ifndef LEVELS_H
+#define LEVELS_H
 
 #include "sprite.h"
 
