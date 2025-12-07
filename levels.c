@@ -1,15 +1,7 @@
-#ifndef LEVELS_H
-        #include "levels.h"
-        #define LEVELS_H
-#endif
-#ifndef SPRITE_H
-        #include "sprite.h"
-        #define SPRITE_H
-#endif
-#ifndef MAP_H
-        #include "map.h"
-        #define MAP_H
-#endif
+#include "levels.h"
+#include "sprite.h"
+#include "map.h"
+
 #include <stdio.h>
 #include <ncurses.h>
 #include <string.h>
@@ -22,19 +14,19 @@ void createLevelEasy(WINDOW *w)
 {
         createMapEasy(w);
         status(w, 5, 2);
-        createSprites(w, 2);
+        createSprites(w, 5, 2);
 }
 
 void createLevelHard(WINDOW *w)
 {
         createMapEasy(w);
-        status(w, 3, 4);
-        createSprites(w, 4);
+        status(w, 3, 8);
+        createSprites(w, 3, 8);
 }
 
-void createSprites(WINDOW *w, int enemyCount)
+void createSprites(WINDOW *w, int playerLives, int enemyCount)
 {
-        sprite player = createPlayer(w);
+        sprite player = createPlayer(w, playerLives);
         sprite enemies[enemyCount];
         for (int i = 0; i < enemyCount; i++)
         {
@@ -154,7 +146,7 @@ void run(WINDOW *w, sprite player, int enemyCount, sprite enemies[enemyCount])
                         }
                         if (stoppedTime > 0)
                         {
-                                if (time(NULL) - stoppedTime >= 30)
+                                if (time(NULL) - stoppedTime >= 15)
                                 {
                                         stoppedTime = 0;
                                         for (int i = stoppedEnemy; i < enemyCount; i+=2)
@@ -177,6 +169,7 @@ void run(WINDOW *w, sprite player, int enemyCount, sprite enemies[enemyCount])
                                         {
                                                 enemies[i].life = 2;
                                                 decrementEnemies(w, &enemiesLeft);
+                                                stoppedTime -= 12;
                                                 mvwaddch(w, enemies[i].yPos, enemies[i].xPos, ' ');
                                                 if (enemiesLeft == 0)
                                                 {

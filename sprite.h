@@ -1,4 +1,7 @@
-#include "stdbool.h"
+#ifndef SPRITE_H
+#define SPRITE_H
+
+#include <stdbool.h>
 #include <ncurses.h>
 #include <string.h>
 #include <time.h>
@@ -18,8 +21,10 @@ typedef struct
         char symbol; // Sprite's symbol
 } sprite;
 
-sprite createPlayer(WINDOW *w);
+sprite createPlayer(WINDOW *w, int playerLives);
 sprite createEnemy(WINDOW *w, int c);
 void resetSprites(WINDOW *w, sprite *player, int enemyCount, sprite *enemies);
 sprite moveSprite(WINDOW *w, sprite s);
 sprite changeVel(sprite e);
+
+#endif

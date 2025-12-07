@@ -1,7 +1,5 @@
-#ifndef LEVELS_H
-        #include "levels.h"
-        #define LEVELS_H
-#endif
+#include "levels.h"
+
 #include <stdio.h>
 #include <ncurses.h>
 #include <string.h>
@@ -132,8 +130,8 @@ int main(void)
         WINDOW *w = newwin(MAXY, MAXX, 1, 1);
         box(w, 0, 0); // Default border to window
         splashPage(w);
-        // lives and enemies?
-        while (1)
+        int toggle = 0;
+        while (toggle == 0)
         {
                 char c = getch();
                 if (c == 'e')

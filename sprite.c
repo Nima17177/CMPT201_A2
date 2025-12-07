@@ -1,21 +1,18 @@
+#include "sprite.h"
+
 #include <stdlib.h>
 #include <stdbool.h>
 #include <curses.h>
 #include <ncurses.h>
 
-#ifndef SPRITE_H
-        #include "sprite.h"
-        #define SPRITE_H
-#endif
-
-sprite createPlayer(WINDOW *w)
+sprite createPlayer(WINDOW *w, int playerLives)
 {
         sprite p;
         p.yPos = 0;
         p.xPos = 0;
         p.yVel = 1;
         p.xVel = 0;
-        p.life = 3;
+        p.life = playerLives;
         p.tile = ' ';
         p.symbol = 'X';
         return p;
