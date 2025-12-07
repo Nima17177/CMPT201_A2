@@ -120,3 +120,20 @@ void decrementEnemies(WINDOW *w, int *enemies)
     wattroff(w, COLOR_PAIR(4));
     wrefresh(w);
 }
+
+void gameDone(WINDOW *w, int x)
+{
+        if (x == 2)
+        {
+                mvwprintw(w, 20, 20, "WINNER");
+        }
+        else if (x == 1)
+        {
+                mvwprintw(w, 20, 20, "LOSER");
+        }
+        else
+        {
+                mvwprintw(w, 20, 20, "QUIT");
+        }
+        wrefresh(w);
+}
