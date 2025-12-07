@@ -30,7 +30,7 @@ void createMapEasy(WINDOW *w)
         mvwprintw(w, 23, 18, "|     |   ---   |         |   ---   |     |");
         mvwprintw(w, 24, 18, "|O    |    |    |         |    |    |    O|");
         mvwprintw(w, 25, 18, "+-----------------------------------------+");
-
+        status(w, 3, 5);
         wrefresh(w);
     refresh();
 }
@@ -96,8 +96,37 @@ void createMapUi(WINDOW *w)
     }
     wattron(w, COLOR_PAIR(4));
     mvwprintw(w, 2, (MAP_X / 2) - 5, "PAC-MAN");
-    mvwprintw(w, 1, 2, "Score: 0");
-    mvwprintw(w, 1, MAP_X - 15, "Lives: 3");
+    wattroff(w, COLOR_PAIR(4));
+    wrefresh(w);
+}
+
+void status(WINDOW *w, int lives, int enemies)
+{   
+    wattron(w, COLOR_PAIR(6));
+    mvwprintw(w, 1, 8, "Lives: %d  ", lives);
+    mvwprintw(w, 1, 63, "Enemies: %d  ", enemies);
+    wattroff(w, COLOR_PAIR(6));
+    wrefresh(w);
+}
+
+
+void decrementLives(WINDOW *w, int *lives)
+{   
+    if (*lives > 0) {
+        (*lives)--;
+    }
+    wattron(w, COLOR_PAIR(4));
+    mvwprintw(w, 1, MAP_X - 15, "Lives: %d  ", *lives);
+    wattroff(w, COLOR_PAIR(4));
+    wrefresh(w);
+}
+void decrementEnemies(WINDOW *w, int *enemies)
+{   
+    if (*enemies > 0) {
+        (*enemies)--;
+    }
+    wattron(w, COLOR_PAIR(4));
+    mvwprintw(w, 1, MAP_X / 2 + 10, "Enemies: %d  ", *enemies);
     wattroff(w, COLOR_PAIR(4));
     wrefresh(w);
 }

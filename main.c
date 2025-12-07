@@ -132,6 +132,7 @@ int main(void)
         WINDOW *w = newwin(MAXY, MAXX, 1, 1);
         box(w, 0, 0); // Default border to window
         splashPage(w);
+        // lives and enemies?
         while (1)
         {
                 char c = getch();

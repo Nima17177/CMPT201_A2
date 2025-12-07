@@ -17,8 +17,11 @@ bool isWall(WINDOW *w, int y, int x);
 void isPortal(WINDOW *w, int *y, int *x);
 
 // Returns if coordinates are a power up; also removed power up from map. 
-bool isPower(WINDOW *w, int y, char c); 
+bool isPower(WINDOW *w, char c); 
 
 void createMapUi(WINDOW *w);
+void decrementEnemies(WINDOW *w, int *enemies);
+void decrementLives(WINDOW *w, int *lives);
+void status(WINDOW *w, int lives, int enemies);
 
 #endif 
