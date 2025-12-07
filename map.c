@@ -7,7 +7,6 @@
 void createMapEasy(WINDOW *w)
 {
     wborder(w, ACS_VLINE, ACS_VLINE, ACS_HLINE, ACS_HLINE, ACS_ULCORNER, ACS_URCORNER, ACS_LLCORNER, ACS_LRCORNER);
-    // Title
     createMapUi(w);
     
     // Maze layout for easy mod9                                       49
@@ -30,9 +29,44 @@ void createMapEasy(WINDOW *w)
         mvwprintw(w, 23, 18, "|     |   ---   |         |   ---   |     |");
         mvwprintw(w, 24, 18, "|O    |    |    |         |    |    |    O|");
         mvwprintw(w, 25, 18, "+-----------------------------------------+");
+        colorMaze(w);
         wrefresh(w);
     refresh();
 }
+
+void colorMaze(WINDOW *w)
+{
+    for (int y = 0; y < MAP_Y; y++) 
+    {
+        for (int x = 0; x < MAP_X; x++)        
+        {
+            char ch = mvwinch(w, y, x);
+            if (ch == '|' || ch == '-' || ch == '+' ) {
+                wattron(w, COLOR_PAIR(1));
+                mvwaddch(w, y, x, ch);
+                wattroff(w, COLOR_PAIR(1));
+            }
+            else if (ch == 'O') {
+                wattron(w, COLOR_PAIR(2));
+                mvwaddch(w, y, x, ch);
+                wattroff(w, COLOR_PAIR(2));
+            }
+            else if (ch == 'P') {
+                wattron(w, COLOR_PAIR(3));
+                mvwaddch(w, y, x, ch);
+                wattroff(w, COLOR_PAIR(3));
+            }
+        }
+    }
+    wrefresh(w);
+
+}
+
+
+
+
+
+
 
 bool isWall(WINDOW *w, int y, int x) {
     if (mvwinch(w, y, x) == '|') return true;
@@ -63,10 +97,7 @@ void isPortal(WINDOW *w, int *y, int *x)
 
 bool isPower(WINDOW *w, char c)
 {
-    if (c == 'P')
-    {
-        //mvwaddch(w, y, x, ' ');
-        //wrefresh(w);
+    if (c == 'P') {
         return true;
     }
     return false;

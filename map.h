@@ -8,7 +8,8 @@
 void createMapEasy(WINDOW *w);
 
 // Draws the hard map. 
-void createMapHard(WINDOW *w); 
+void createMapHard(WINDOW *w);
+void colorMaze(WINDOW *w); 
 
 // Returns if coordinates are a wall.
 bool isWall(WINDOW *w, int y, int x); 
