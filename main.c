@@ -137,8 +137,8 @@ int main(void)
                 if (c == 'e')
                 {
                         wclear(w);
-                        //endwin();
-                        //WINDOW *w = newwin(MAXY, MAXX, 1, 1);
+                        endwin();
+                        WINDOW *w = newwin(MAXY, MAXX, 1, 1);
                         box(w, 0, 0);
                         wrefresh(w);
                         createLevelEasy(w);
@@ -147,8 +147,8 @@ int main(void)
                 else if (c == 'h')
                 {
                         wclear(w);
-                        //endwin();
-                        //WINDOW *w = newwin(MAXY, MAXX, 1, 1);
+                        endwin();
+                        WINDOW *w = newwin(MAXY, MAXX, 1, 1);
                         box(w, 0, 0);
                         wrefresh(w);
                         createLevelHard(w);

@@ -35,7 +35,7 @@ void resetSprites(WINDOW *w, sprite *player, int enemyCount, sprite *enemies)
 {
         mvwaddch(w, player->yPos, player->xPos, ' ');
         player->yPos = 24;
-        player->xPos = 41;
+        player->xPos = 40;
         mvwaddch(w, player->yPos, player->xPos, player->symbol);
         for (int i = 0; i < enemyCount; i++)
         {
