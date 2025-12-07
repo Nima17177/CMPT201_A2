@@ -19,4 +19,6 @@ void isPortal(WINDOW *w, int *y, int *x);
 // Returns if coordinates are a power up; also removed power up from map. 
 bool isPower(WINDOW *w, int y, char c); 
 
+void createMapUi(WINDOW *w);
+
 #endif 

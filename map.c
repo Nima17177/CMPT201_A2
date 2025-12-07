@@ -8,7 +8,7 @@ void createMapEasy(WINDOW *w)
 {
     wborder(w, ACS_VLINE, ACS_VLINE, ACS_HLINE, ACS_HLINE, ACS_ULCORNER, ACS_URCORNER, ACS_LLCORNER, ACS_LRCORNER);
     // Title
-    mvwprintw(w, 2, (MAP_X / 2) - 5, "PAC-MAN");
+    createMapUi(w);
     
     // Maze layout for easy mod9                                       49
          mvwprintw(w, 7, 18, "+-----------------------------------------+");
@@ -79,4 +79,25 @@ bool isPower(WINDOW *w, char c)
         return true;
     }
     return false;
+}
+
+void createMapUi(WINDOW *w)
+{   
+    if (has_colors())
+    {
+        start_color();
+        init_pair(1, COLOR_RED, COLOR_BLACK);
+        init_pair(2, COLOR_GREEN, COLOR_BLACK);
+        init_pair(3, COLOR_YELLOW, COLOR_BLACK);
+        init_pair(4, COLOR_BLUE, COLOR_BLACK);
+        init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
+        init_pair(6, COLOR_CYAN, COLOR_BLACK);
+        init_pair(7, COLOR_WHITE, COLOR_BLACK);
+    }
+    wattron(w, COLOR_PAIR(4));
+    mvwprintw(w, 2, (MAP_X / 2) - 5, "PAC-MAN");
+    mvwprintw(w, 1, 2, "Score: 0");
+    mvwprintw(w, 1, MAP_X - 15, "Lives: 3");
+    wattroff(w, COLOR_PAIR(4));
+    wrefresh(w);
 }
