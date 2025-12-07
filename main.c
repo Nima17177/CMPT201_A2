@@ -159,5 +159,6 @@ int main(void)
         }
         getch();
         endwin();
+        curs_set(TRUE);
         return 0;
 }

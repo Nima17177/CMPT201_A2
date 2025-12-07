@@ -23,5 +23,6 @@ void createMapUi(WINDOW *w);
 void decrementEnemies(WINDOW *w, int *enemies);
 void decrementLives(WINDOW *w, int *lives);
 void status(WINDOW *w, int lives, int enemies);
+void gameDone(WINDOW *w, int x);
 
 #endif 
