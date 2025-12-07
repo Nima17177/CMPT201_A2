@@ -127,7 +127,7 @@ int main(void)
         initscr(); // Initialize window
         noecho(); // Entered keys are not printed on the screen.
         curs_set(FALSE); // Don't display a cursor
-        WINDOW *w = newwin(MAXY, MAXX, 1, 1);
+        WINDOW *w = newwin(MAXY, MAXX, 0, 0);
         box(w, 0, 0); // Default border to window
         splashPage(w);
         int toggle = 0;
@@ -137,8 +137,8 @@ int main(void)
                 if (c == 'e')
                 {
                         wclear(w);
-                        endwin();
-                        WINDOW *w = newwin(MAXY, MAXX, 1, 1);
+                        //endwin();
+                        //WINDOW *w = newwin(MAXY, MAXX, 1, 1);
                         box(w, 0, 0);
                         wrefresh(w);
                         createLevelEasy(w);
@@ -147,8 +147,8 @@ int main(void)
                 else if (c == 'h')
                 {
                         wclear(w);
-                        endwin();
-                        WINDOW *w = newwin(MAXY, MAXX, 1, 1);
+                        //endwin();
+                        //WINDOW *w = newwin(MAXY, MAXX, 1, 1);
                         box(w, 0, 0);
                         wrefresh(w);
                         createLevelHard(w);

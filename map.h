@@ -9,7 +9,6 @@ void createMapEasy(WINDOW *w);
 
 // Draws the hard map. 
 void createMapHard(WINDOW *w);
-void colorMaze(WINDOW *w); 
 
 // Returns if coordinates are a wall.
 bool isWall(WINDOW *w, int y, int x); 
@@ -25,5 +24,6 @@ void decrementEnemies(WINDOW *w, int *enemies);
 void decrementLives(WINDOW *w, int *lives);
 void status(WINDOW *w, int lives, int enemies);
 void gameDone(WINDOW *w, int x);
+void vines(WINDOW *w);
 
 #endif 
