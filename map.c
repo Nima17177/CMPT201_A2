@@ -96,6 +96,8 @@ void createMapUi(WINDOW *w)
     }
     wattron(w, COLOR_PAIR(4));
     mvwprintw(w, 2, (MAP_X / 2) - 5, "PAC-MAN");
+    // "Controls", "Use <arrows> to move player", "Press <space> to activate portal", "After collecting a powerup, press <1> or <2> to freeze half of the enemies"
+    //mvwprintw(w, 5,  
     wattroff(w, COLOR_PAIR(4));
     wrefresh(w);
 }
@@ -104,7 +106,7 @@ void status(WINDOW *w, int lives, int enemies)
 {   
     wattron(w, COLOR_PAIR(6));
     mvwprintw(w, 1, 8, "Lives: %d  ", lives);
-    mvwprintw(w, 1, 63, "Enemies: %d  ", enemies);
+    mvwprintw(w, 1, 62, "Enemies: %d  ", enemies);
     wattroff(w, COLOR_PAIR(6));
     wrefresh(w);
 }
