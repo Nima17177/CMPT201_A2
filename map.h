@@ -163,7 +163,7 @@ void map_winScreen(WINDOW *w);
  * @returns None
  * @see map_gameDone
  */
-void map_looseScreen(WINDOW *w);
+void map_loseScreen(WINDOW *w);
 
 /**
  * @brief 

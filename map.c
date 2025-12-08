@@ -162,7 +162,7 @@ void map_gameDone(WINDOW *w, int x)
 	map_starFall(w);
 	if (x == -1)
 	{
-		map_looseScreen(w);
+		map_loseScreen(w);
 	}
 	else if (x == -2)
 	{
@@ -199,7 +199,7 @@ void map_starFall(WINDOW *w)
 	wrefresh(w);
 }
 
-void map_looseScreen(WINDOW *w)
+void map_loseScreen(WINDOW *w)
 {
 	mvwprintw(w, 15, 15, "You Lost");
 	mvwprintw(w, 24, 15, "Press any key to continue.");
