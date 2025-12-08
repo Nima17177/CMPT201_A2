@@ -1,92 +1,86 @@
 #include "sprite.h"
 
-#include <stdlib.h>
-#include <stdbool.h>
-#include <curses.h>
-#include <ncurses.h>
-
-sprite createPlayer(WINDOW *w, int playerLives)
+sprite sprite_createPlayer(int playerLives)
 {
-        sprite p;
-        p.yPos = 0;
-        p.xPos = 0;
-        p.yVel = 1;
-        p.xVel = 0;
-        p.life = playerLives;
-        p.tile = ' ';
-        p.symbol = 'X';
-        return p;
+ 	sprite player;
+	player.yPos = 0;
+	player.xPos = 0;
+	player.yVel = 1;
+	player.xVel = 0;
+	player.life = playerLives;
+ 	player.tile = ' ';
+	player.symbol = 'X';
+	return player;
 }
 
-sprite createEnemy(WINDOW *w, int c)
+sprite sprite_createEnemy()
 {
-        sprite e;
-        e.yPos = 0;
-        e.xPos = 0;
-        e.yVel = 1;
-        e.xVel = 0;
-        e.life = 0;
-        e.tile = ' ';
-        e.symbol = 'E';
-        return e;
+	sprite enemy;
+	enemy.yPos = 0;
+	enemy.xPos = 0;
+	enemy.yVel = 1;
+	enemy.xVel = 0;
+	enemy.life = 0;
+	enemy.tile = ' ';
+	enemy.symbol = 'E';
+	return enemy;
 }
 
-void resetSprites(WINDOW *w, sprite *player, int enemyCount, sprite *enemies)
+void sprite_reset(WINDOW *w, sprite *player, int enemyCount, sprite *enemies)
 {
-        mvwaddch(w, player->yPos, player->xPos, ' ');
-        player->yPos = 24;
-        player->xPos = 40;
-        mvwaddch(w, player->yPos, player->xPos, player->symbol);
-        for (int i = 0; i < enemyCount; i++)
-        {
-                if (enemies[i].life != 2)
-                {
-                        mvwaddch(w, enemies[i].yPos, enemies[i].xPos, ' ');
-                        enemies[i].yPos = 8;
-                        enemies[i].xPos = 37 + (i * 1.5);
-                        mvwaddch(w, enemies[i].yPos, enemies[i].xPos, enemies[i].symbol);
-                }
-        }
-        wrefresh(w);
+	mvwaddch(w, player->yPos, player->xPos, ' ');
+	player->yPos = 24;
+	player->xPos = 40;
+	mvwaddch(w, player->yPos, player->xPos, player->symbol);
+	for (int i = 0; i < enemyCount; i++)
+	{
+		if (enemies[i].life != 2) // If enemy is alive.
+ 		{
+ 			mvwaddch(w, enemies[i].yPos, enemies[i].xPos, ' ');
+			enemies[i].yPos = 8;
+			enemies[i].xPos = 37 + (i * 1.5);
+			mvwaddch(w, enemies[i].yPos, enemies[i].xPos, enemies[i].symbol);
+			enemies[i].life = 0; // Unfreeze enemies.
+		}
+	}
+	wrefresh(w);
 }
 
-sprite moveSprite(WINDOW *w, sprite s)
+void sprite_move(WINDOW *w, sprite *s)
 {
-        mvwaddch(w, s.yPos, s.xPos, s.tile);
-        s.yPos = s.yPos + s.yVel;
-        s.xPos = s.xPos + s.xVel;
-        s.tile = mvwinch(w, s.yPos, s.xPos);
-        mvwaddch(w, s.yPos, s.xPos, s.symbol);
-        wrefresh(w);
-        return s;
+	mvwaddch(w, s->yPos, s->xPos, s->tile);
+	s->yPos = s->yPos + s->yVel;
+	s->xPos = s->xPos + s->xVel;
+	s->tile = mvwinch(w, s->yPos, s->xPos);
+	mvwaddch(w, s->yPos, s->xPos, s->symbol);
+	wrefresh(w);
 }
 
-sprite changeVel(sprite e)
+void sprite_changeVel(sprite *s)
 {
-        int randNum = rand() % 2;
-        if (e.yVel == 0)
-        {
-                e.xVel = 0;
-                if (randNum == 0)
-                {
-                        e.yVel = 1;
-                }
-                else
-                {
-                        e.yVel = -1;
-                }
-        }
-        else if (e.xVel == 0)
-        {
-                e.yVel = 0;
-                if (randNum == 0)
-                {
-                        e.xVel = 1;
-                }
-                else
-                {
-                        e.xVel = -1;
-                }
-        }
-        return e;
+	int randNum = rand() % 2;
+	if (s->yVel == 0)
+	{
+		s->xVel = 0;
+		if (randNum == 0)
+		{
+			s->yVel = 1;
+  		}
+		else
+ 		{
+			s->yVel = -1;
+		}
+	}
+	else if (s->xVel == 0)
+	{
+		s->yVel = 0;
+		if (randNum == 0)
+		{
+			s->xVel = 1;
+		}
+		else
+		{
+			s->xVel = -1;
+		}
+	}
 }

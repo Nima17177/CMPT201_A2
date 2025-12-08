@@ -2,21 +2,28 @@ CC = gcc
 CFLAGS = -Wall -g -std=c11
 LDFLAGS = -lm -lc -lncurses -ltinfo
 
-HDRmod = levels.h sprite.h map.h
-SRCmod = levels.c sprite.c map.c
-OBJmod = levels.o sprite.o map.o
+HDRmod = $(wildcard *.h)
+SRCmod = $(HDRmod:.h=.c)
+OBJmod = $(HDRmod:.h=.o)
 
-SRCmain = main.c 
-OBJmain = main.o levels.o sprite.o map.o
-APP = a.out
+SRCmain = main.c
+OBJmain = $(SRCmain:.c=.o) $(OBJmod)
+
+APP = MacPan.out
+
 
 $(APP): $(OBJmain) $(OBJmod) $(HDRmod)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
-run: 
-	./a.out
 
 %.o: %.c %.h
 	$(CC) $(CFLAGS) -c $<
 
-clean: 
-	rm *.o a.out
+
+PHONY: run clean
+
+run: $(APP)
+	./$(APP)
+
+clean:
+	rm *.o $(APP)
+
