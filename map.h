@@ -25,5 +25,7 @@ void decrementLives(WINDOW *w, int *lives);
 void status(WINDOW *w, int lives, int enemies);
 void gameDone(WINDOW *w, int x);
 void vines(WINDOW *w);
+void starFall(WINDOW *w);
+void quitScreen(WINDOW *w);
 
 #endif 

@@ -14,19 +14,19 @@ void createMapEasy(WINDOW *w)
          mvwprintw(w, 7, 18, "+-----------------------------------------+");
          mvwprintw(w, 8, 18, "|O    |    |    |         |    |    |    O|");
          mvwprintw(w, 9, 18, "|     |   ---   |   ---   |   ---   |     |");
-        mvwprintw(w, 10, 18, "|   |---|     |---|     |---|     |---|   |");
+        mvwprintw(w, 10, 18, "|                                         |");
         mvwprintw(w, 11, 18, "|-|       |-|       |-|       |-|       |-|");
-        mvwprintw(w, 12, 18, "|   |---|     |---|     |---|     |---|   |");
+        mvwprintw(w, 12, 18, "|                                         |");
         mvwprintw(w, 13, 18, "|-|       |-|       |-|       |-|       |-|");
-        mvwprintw(w, 14, 18, "|   |---|     |---|     |---|     |---|   |");
+        mvwprintw(w, 14, 18, "|                                         |");
         mvwprintw(w, 15, 18, "|-|       |-|       |-|       |-|       |-|");
-        mvwprintw(w, 16, 18, "|P  |---|     |---|     |---|     |---|  P|");
+        mvwprintw(w, 16, 18, "|P                                       P|");
         mvwprintw(w, 17, 18, "|-|       |-|       |-|       |-|       |-|");
-        mvwprintw(w, 18, 18, "|   |---|     |---|     |---|     |---|   |");
+        mvwprintw(w, 18, 18, "|                                         |");
         mvwprintw(w, 19, 18, "|-|       |-|       |-|       |-|       |-|");
-        mvwprintw(w, 20, 18, "|   |---|     |---|     |---|     |---|   |");
+        mvwprintw(w, 20, 18, "|                                         |");
         mvwprintw(w, 21, 18, "|-|       |-|       |-|       |-|       |-|");
-        mvwprintw(w, 22, 18, "|   |---|     |---|     |---|     |---|   |");
+        mvwprintw(w, 22, 18, "|                                         |");
         mvwprintw(w, 23, 18, "|     |   ---   |         |   ---   |     |");
         mvwprintw(w, 24, 18, "|O    |    |    |         |    |    |    O|");
         mvwprintw(w, 25, 18, "+-----------------------------------------+");
@@ -38,7 +38,7 @@ void createMapHard(WINDOW *w)
 {
     //        
          mvwprintw(w, 7, 18, "+-----------------------------------------+");
-         mvwprintw(w, 8, 18, "|O    |    |    |         |    |    |    O|");
+         mvwprintw(w, 8, 18, "|O    |    |                   |    |    O|");
          mvwprintw(w, 9, 18, "|     |   ---   |   ---   |   ---   |     |");
         mvwprintw(w, 10, 18, "|   |---|     |---|     |---|     |---|   |");
         mvwprintw(w, 11, 18, "|-|       |-|       |-|       |-|       |-|");
@@ -163,14 +163,19 @@ void gameDone(WINDOW *w, int x)
         if (x == 2)
         {
                 mvwprintw(w, 20, 20, "WINNER");
+                starFall(w);
         }
         else if (x == 1)
         {
                 mvwprintw(w, 20, 20, "LOSER");
+
         }
         else
         {
                 mvwprintw(w, 20, 20, "QUIT");
+                createMapUi(w);
+                starFall(w);
+                quitScreen(w);
         }
         wrefresh(w);
 }
@@ -179,4 +184,33 @@ void vines(WINDOW *w)
     mvwaddch(w, 10, 4, ACS_ULCORNER);
     mvwaddch(w, 11, 4, ACS_URCORNER); 
 }
-
+void quitScreen(WINDOW *w)
+{
+   mvwprintw(w, 15, 15, "  |||||||    ||      ||   ||	||||||||||||");
+   mvwprintw(w, 16, 15, "||       ||  ||      ||   ||  	     ||");
+   mvwprintw(w, 17, 15, "||       ||  ||      ||   ||        ||");
+   mvwprintw(w, 18, 15, "||       ||  ||      ||   ||        ||");
+   mvwprintw(w, 19, 15, " ||||||||||  ||      ||   ||        ||");
+   mvwprintw(w, 20, 15, "	      ||   ||    ||    ||        ||");
+   mvwprintw(w, 21, 15, "	      ||     ||||      ||        ||");
+   wrefresh(w);
+}
+void starFall(WINDOW *w)
+{
+    int y = 1;
+    while (y < MAP_Y - 1)
+    {
+        for (int x =1; x < MAP_X -1; x++)
+        {   
+            if (y > 1)
+            {
+                mvwaddch(w, y -1, x, ' ');
+            }
+             mvwaddch(w, y, x, '*');
+        }
+        wrefresh(w);
+        napms(100);
+        y++;
+    }
+    wrefresh(w);
+}
