@@ -163,11 +163,16 @@ void gameDone(WINDOW *w, int x)
         if (x == 2)
         {
                 mvwprintw(w, 20, 20, "WINNER");
+                createMapUi(w);
+                createMapHard(w);
                 starFall(w);
         }
         else if (x == 1)
         {
                 mvwprintw(w, 20, 20, "LOSER");
+                creatmapUi(w);
+                createMapHard(w);
+                starFall(w);
 
         }
         else
@@ -207,6 +212,7 @@ void starFall(WINDOW *w)
                 mvwaddch(w, y -1, x, ' ');
             }
              mvwaddch(w, y, x, '*');
+             
         }
         wrefresh(w);
         napms(100);
