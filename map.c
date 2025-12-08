@@ -170,7 +170,7 @@ void gameDone(WINDOW *w, int x)
         else if (x == 1)
         {
                 mvwprintw(w, 20, 20, "LOSER");
-                creatmapUi(w);
+                createMapUi(w);
                 createMapHard(w);
                 starFall(w);
 
