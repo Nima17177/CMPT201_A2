@@ -216,12 +216,48 @@ void map_winScreen(WINDOW *w)
 
 void map_quitScreen(WINDOW *w)
 {
-	mvwprintw(w, 15, 15, "  |||||||    ||      ||   ||   ||||||||||||");
-	mvwprintw(w, 16, 15, "||       ||  ||      ||   ||        ||");
-	mvwprintw(w, 17, 15, "||       ||  ||      ||   ||        ||");
-	mvwprintw(w, 18, 15, "||       ||  ||      ||   ||        ||");
-	mvwprintw(w, 19, 15, " ||||||||||  ||      ||   ||        ||");
-	mvwprintw(w, 20, 15, "         ||   ||    ||    ||        ||");
-	mvwprintw(w, 21, 15, "         ||     ||||      ||        ||");
-	mvwprintw(w, 24, 15, "Press any key to continue.");
+    char *msg = "QUIT";
+	int len = strlen(msg);
+	int startx = (MAX_X - len) / 2;
+	int starty = MAX_Y / 2;
+
+	int dy = 1;
+	int dx = 1;
+	
+	while (1)
+	{
+		for (int i = 0; i < len; i++)
+		{
+			mvwaddch(w, starty, startx + i, ' ');
+		}
+		startx += dx;
+		starty += dy;
+		mvwprintw(w, starty, startx, "%s", msg);
+		wrefresh(w);
+		napms(100);
+		if (startx == MAX_X - len -1)
+		{
+			dx = -dx;
+		}
+		if (starty == MAX_Y -2)
+		{
+			dy = -dy;
+		}
+		if (startx == 1)
+		{
+			dx = -dx;
+		}
+		if (starty == 1)
+		{
+			dy = -dy;
+		}
+		if (getch() == 'q')
+		{
+			break;
+		}	
+
+	
+	
+	}
+	wrefresh(w);
 }
