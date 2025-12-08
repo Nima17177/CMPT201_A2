@@ -36,14 +36,14 @@ sprite sprite_createPlayer(int playerLives);
 
 /**
  * @brief Creates and initializes the enemy sprite.
- * @param None
+ * @param The integer 'i' which is the enemy's index and symbol. 
  * @pre None
  * @post None
  * @throws None
  * @returns A new sprite structure
  * @see level_createSprites
  */
-sprite sprite_createEnemy();
+sprite sprite_createEnemy(int i);
 
 /**
  * @brief Spawns the player and enemy sprites, or resets the positions to their spawn points.

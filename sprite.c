@@ -9,11 +9,11 @@ sprite sprite_createPlayer(int playerLives)
 	player.xVel = 0;
 	player.life = playerLives;
  	player.tile = ' ';
-	player.symbol = 'X';
+	player.symbol = '*';
 	return player;
 }
 
-sprite sprite_createEnemy()
+sprite sprite_createEnemy(int i)
 {
 	sprite enemy;
 	enemy.yPos = 0;
@@ -22,7 +22,7 @@ sprite sprite_createEnemy()
 	enemy.xVel = 0;
 	enemy.life = 0;
 	enemy.tile = ' ';
-	enemy.symbol = 'E';
+	enemy.symbol = (char)(i+64); // Convert to upper case alphabet
 	return enemy;
 }
 
@@ -39,8 +39,12 @@ void sprite_reset(WINDOW *w, sprite *player, int enemyCount, sprite *enemies)
  			mvwaddch(w, enemies[i].yPos, enemies[i].xPos, ' ');
 			enemies[i].yPos = 8;
 			enemies[i].xPos = 37 + (i * 1.5);
-			mvwaddch(w, enemies[i].yPos, enemies[i].xPos, enemies[i].symbol);
-			enemies[i].life = 0; // Unfreeze enemies.
+			if (enemies[i].life == 1)
+			{
+				enemies[i].symbol = (enemies[i].symbol)-32; 
+				mvwaddch(w, enemies[i].yPos, enemies[i].xPos, enemies[i].symbol);
+				enemies[i].life = 0; // Unfreeze enemies.
+			}
 		}
 	}
 	wrefresh(w);

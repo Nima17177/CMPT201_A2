@@ -28,7 +28,7 @@ void level_createSprites(WINDOW *w, int playerLives, int enemyCount)
 	sprite enemies[enemyCount];
 	for (int i = 0; i < enemyCount; i++)
 	{
-		enemies[i] = sprite_createEnemy();
+		enemies[i] = sprite_createEnemy(i+1);
 	}
 	sprite_reset(w, &player, enemyCount, enemies);
 	level_run(w, player, enemyCount, enemies);
@@ -111,8 +111,8 @@ void level_checkInput(WINDOW *w, int input, int *gameStage, time_t *stoppedTime,
 				if (enemies[i].life == 0) // Alive & Moving
 				{
 					enemies[i].life = 1; // Frozen
-					enemies[i].symbol = 'e';
-					mvwaddch(w, enemies[i].yPos, enemies[i].xPos, 'e');
+					enemies[i].symbol = (enemies[i].symbol)+32;
+					mvwaddch(w, enemies[i].yPos, enemies[i].xPos, enemies[i].symbol);
 				}
 			}
 		}
@@ -144,7 +144,8 @@ void level_updateFrame(WINDOW *w, time_t *stoppedTime, int stoppedEnemy, sprite 
 		if (enemies[i].life == 0) // Alive & Moving
 		{
 			int randNum0 = rand() % 5;
-			if ((randNum0 == 0) || (map_isWall(w, ((enemies[i].yPos)+(enemies[i].yVel)), ((enemies[i].xPos)+(enemies[i].xVel))) == true) || (mvwinch(w, ((enemies[i].yPos)+(enemies[i].yVel)), ((enemies[i].xPos)+(enemies[i].xVel))) == (enemies[i].symbol))) // If going to move into a wall or another enemy, or random change said yes, then change direction.
+			char nextTile = mvwinch(w, ((enemies[i].yPos)+(enemies[i].yVel)), ((enemies[i].xPos)+(enemies[i].xVel))); 
+			if ((randNum0 == 0) || (map_isWall(w, ((enemies[i].yPos)+(enemies[i].yVel)), ((enemies[i].xPos)+(enemies[i].xVel))) == true) || (nextTile >= 65 && nextTile <= 90) || (nextTile >= 97 && nextTile <= 122)) // If random chance says yes, or going to move into a wall, or going to move into another enemy (alphabet), then change direction.
 			{
 				sprite_changeVel(&enemies[i]);
 			}
@@ -164,8 +165,8 @@ void level_updateFrame(WINDOW *w, time_t *stoppedTime, int stoppedEnemy, sprite 
 				if (enemies[i].life == 1) // Enemy is Alive & Frozen. Do this check so that we don't unfreeze dead enemies.
 				{
 					enemies[i].life = 0;
-					enemies[i].symbol = 'E';
-					mvwaddch(w, enemies[i].yPos, enemies[i].xPos, 'E');
+					enemies[i].symbol = (enemies[i].symbol)-32;
+					mvwaddch(w, enemies[i].yPos, enemies[i].xPos, enemies[i].symbol);
 				}
 			}
 		}

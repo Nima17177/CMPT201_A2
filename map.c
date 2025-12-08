@@ -1,50 +1,53 @@
 #include "map.h"
 
+#define PORTAL '@'
+#define POWER '$'
+
 void map_createEasy(WINDOW *w)
 {
-	 mvwprintw(w, 7, 18, "+-----------------------------------------+");
-	 mvwprintw(w, 8, 18, "|O    |    |    |         |    |    |    O|");
-	 mvwprintw(w, 9, 18, "|     |   ---   |   ---   |   ---   |     |");
-	mvwprintw(w, 10, 18, "|                                         |");
-	mvwprintw(w, 11, 18, "|-|       |-|       |-|       |-|       |-|");
-	mvwprintw(w, 12, 18, "|                                         |");
-	mvwprintw(w, 13, 18, "|-|       |-|       |-|       |-|       |-|");
-	mvwprintw(w, 14, 18, "|                                         |");
-	mvwprintw(w, 15, 18, "|-|       |-|       |-|       |-|       |-|");
-	mvwprintw(w, 16, 18, "|P                                       P|");
-	mvwprintw(w, 17, 18, "|-|       |-|       |-|       |-|       |-|");
-	mvwprintw(w, 18, 18, "|                                         |");
-	mvwprintw(w, 19, 18, "|-|       |-|       |-|       |-|       |-|");
-	mvwprintw(w, 20, 18, "|                                         |");
-	mvwprintw(w, 21, 18, "|-|       |-|       |-|       |-|       |-|");
-	mvwprintw(w, 22, 18, "|                                         |");
-	mvwprintw(w, 23, 18, "|     |   ---   |         |   ---   |     |");
-	mvwprintw(w, 24, 18, "|O    |    |    |         |    |    |    O|");
-	mvwprintw(w, 25, 18, "+-----------------------------------------+");
+	  mvwprintw(w, 7, 18, "+-----------------------------------------+");
+	 mvwprintw(w, 8, 18, "|%c    |    |    |         |    |    |    %c|", PORTAL, PORTAL);
+	  mvwprintw(w, 9, 18, "|     |   ---   |   ---   |   ---   |     |");
+	 mvwprintw(w, 10, 18, "|                                         |");
+	 mvwprintw(w, 11, 18, "|-|       |-|       |-|       |-|       |-|");
+	 mvwprintw(w, 12, 18, "|                                         |");
+	 mvwprintw(w, 13, 18, "|-|       |-|       |-|       |-|       |-|");
+	 mvwprintw(w, 14, 18, "|                                         |");
+	 mvwprintw(w, 15, 18, "|-|       |-|       |-|       |-|       |-|");
+	mvwprintw(w, 16, 18, "|%c                                       %c|", POWER, POWER);
+	 mvwprintw(w, 17, 18, "|-|       |-|       |-|       |-|       |-|");
+	 mvwprintw(w, 18, 18, "|                                         |");
+	 mvwprintw(w, 19, 18, "|-|       |-|       |-|       |-|       |-|");
+	 mvwprintw(w, 20, 18, "|                                         |");
+	 mvwprintw(w, 21, 18, "|-|       |-|       |-|       |-|       |-|");
+	 mvwprintw(w, 22, 18, "|                                         |");
+	 mvwprintw(w, 23, 18, "|     |   ---   |         |   ---   |     |");
+	mvwprintw(w, 24, 18, "|%c    |    |    |         |    |    |    %c|", PORTAL, PORTAL);
+	 mvwprintw(w, 25, 18, "+-----------------------------------------+");
 	wrefresh(w); 
 }
 
 void map_createHard(WINDOW *w)
 {
-	 mvwprintw(w, 7, 18, "+-----------------------------------------+");
-	 mvwprintw(w, 8, 18, "|O    |    |                   |    |    O|");
-	 mvwprintw(w, 9, 18, "|     |   ---   |   ---   |   ---   |     |");
-	mvwprintw(w, 10, 18, "|   |---|     |---|     |---|     |---|   |");
-	mvwprintw(w, 11, 18, "|-|       |-|       |-|       |-|       |-|");
-	mvwprintw(w, 12, 18, "|   |---|     |---|     |---|     |---|   |");
-	mvwprintw(w, 13, 18, "|-|       |-|       |-|       |-|       |-|");
-	mvwprintw(w, 14, 18, "|   |---|     |---|     |---|     |---|   |");
-	mvwprintw(w, 15, 18, "|-|       |-|       |-|       |-|       |-|");
-	mvwprintw(w, 16, 18, "|P  |---|     |---|     |---|     |---|  P|");
-	mvwprintw(w, 17, 18, "|-|       |-|       |-|       |-|       |-|");
-	mvwprintw(w, 18, 18, "|   |---|     |---|     |---|     |---|   |");
-	mvwprintw(w, 19, 18, "|-|       |-|       |-|       |-|       |-|");
-	mvwprintw(w, 20, 18, "|   |---|     |---|     |---|     |---|   |");
-	mvwprintw(w, 21, 18, "|-|       |-|       |-|       |-|       |-|");
-	mvwprintw(w, 22, 18, "|   |---|     |---|     |---|     |---|   |");
-	mvwprintw(w, 23, 18, "|     |   ---   |         |   ---   |     |");
-	mvwprintw(w, 24, 18, "|O    |    |    |         |    |    |    O|");
-	mvwprintw(w, 25, 18, "+-----------------------------------------+");
+	  mvwprintw(w, 7, 18, "+-----------------------------------------+");
+	 mvwprintw(w, 8, 18, "|%c    |    |                   |    |    %c|", PORTAL, PORTAL);
+	  mvwprintw(w, 9, 18, "|     |   ---   |   ---   |   ---   |     |");
+	 mvwprintw(w, 10, 18, "|   |---|     |---|     |---|     |---|   |");
+	 mvwprintw(w, 11, 18, "|-|       |-|       |-|       |-|       |-|");
+	 mvwprintw(w, 12, 18, "|   |---|     |---|     |---|     |---|   |");
+	 mvwprintw(w, 13, 18, "|-|       |-|       |-|       |-|       |-|");
+	 mvwprintw(w, 14, 18, "|   |---|     |---|     |---|     |---|   |");
+	 mvwprintw(w, 15, 18, "|-|       |-|       |-|       |-|       |-|");
+	mvwprintw(w, 16, 18, "|%c  |---|     |---|     |---|     |---|  %c|", POWER, POWER);
+	 mvwprintw(w, 17, 18, "|-|       |-|       |-|       |-|       |-|");
+	 mvwprintw(w, 18, 18, "|   |---|     |---|     |---|     |---|   |");
+	 mvwprintw(w, 19, 18, "|-|       |-|       |-|       |-|       |-|");
+	 mvwprintw(w, 20, 18, "|   |---|     |---|     |---|     |---|   |");
+	 mvwprintw(w, 21, 18, "|-|       |-|       |-|       |-|       |-|");
+	 mvwprintw(w, 22, 18, "|   |---|     |---|     |---|     |---|   |");
+	 mvwprintw(w, 23, 18, "|     |   ---   |         |   ---   |     |");
+	mvwprintw(w, 24, 18, "|%c    |    |    |         |    |    |    %c|", PORTAL, PORTAL);
+	 mvwprintw(w, 25, 18, "+-----------------------------------------+");
 	wrefresh(w);
 }
 
@@ -74,8 +77,8 @@ void map_createUi(WINDOW *w)
 	mvwprintw(w, 6, 17, " <P> to Pause/Resume");
 	mvwprintw(w, 6, 49, " <Q> to Quit");
 	mvwprintw(w, 26, 27, "Use <arrows> to move player");
-	mvwprintw(w, 27, 24, "Press <space> to activate portal");
-	mvwprintw(w, 28, 3, "After collecting a powerup, press <1> or <2> to freeze half of the enemies");
+	mvwprintw(w, 27, 24, "Press <space> to activate portal ( %c )", PORTAL);
+	mvwprintw(w, 28, 3, "When over a powerup ( %c ), press <1> or <2> to freeze half of the enemies", POWER);
 	wattroff(w, COLOR_PAIR(2));
 	map_vines(w);
 	wrefresh(w);
@@ -135,7 +138,7 @@ void map_isPortal(WINDOW *w, int *y, int *x)
 
 bool map_isPower(WINDOW *w, char c)
 {
-	if (c == 'P') return true;
+	if (c == POWER) return true;
 	return false;
 }
 
