@@ -142,18 +142,18 @@ bool map_isPower(WINDOW *w, char c)
 void map_decrementLives(WINDOW *w, int *lives)
 {
 	(*lives)--;
-	wattron(w, COLOR_PAIR(4));
+	wattron(w, COLOR_PAIR(6));
 	mvwprintw(w, 1, 8, "Lives: %d  ", *lives);
-	wattroff(w, COLOR_PAIR(4));
+	wattroff(w, COLOR_PAIR(6));
 	wrefresh(w);
 }
 
 void map_decrementEnemies(WINDOW *w, int *enemies)
 {
 	(*enemies)--;
-	wattron(w, COLOR_PAIR(4));
+	wattron(w, COLOR_PAIR(6));
 	mvwprintw(w, 1, 62, "Enemies: %d  ", *enemies);
-	wattroff(w, COLOR_PAIR(4));
+	wattroff(w, COLOR_PAIR(6));
 	wrefresh(w);
 }
 
@@ -164,7 +164,7 @@ void map_gameDone(WINDOW *w, int x)
 	{
 		map_looseScreen(w);
 	}
-	if (x == -2)
+	else if (x == -2)
 	{
 		map_winScreen(w);
 	}
@@ -191,6 +191,10 @@ void map_starFall(WINDOW *w)
 		wrefresh(w);
 		napms(100);
 		y++;
+	}
+	for (int x = 1; x < MAX_X -1; x++)
+	{
+		mvwaddch(w, y -1, x, ' ');
 	}
 	wrefresh(w);
 }
