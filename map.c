@@ -218,8 +218,11 @@ void map_quitScreen(WINDOW *w)
 {
     char *msg = "QUIT";
 	int len = strlen(msg);
-	int startx = (MAX_X - len) / 2;
-	int starty = MAX_Y / 2;
+	int startx = 3;
+	int starty = 3;
+	//Small box inside the window
+	mvwhline(w, MAX_Y - 4, 1, ACS_HLINE, MAX_X - 2);
+	mvwprintw(w, MAX_Y - 2, MAX_X/2 - 17, "Press <Q> then any key to continue.");
 
 	int dy = 1;
 	int dx = 1;
@@ -239,11 +242,11 @@ void map_quitScreen(WINDOW *w)
 		{
 			dx = -dx;
 		}
-		if (starty == MAX_Y -2)
+		if (starty == MAX_Y -5)
 		{
 			dy = -dy;
 		}
-		if (startx == 1)
+		if (startx == 3)
 		{
 			dx = -dx;
 		}
@@ -251,13 +254,11 @@ void map_quitScreen(WINDOW *w)
 		{
 			dy = -dy;
 		}
-		if (getch() == 'q')
+		int ch = getch();
+		if (ch == 'q' || ch == 'Q')
 		{
 			break;
 		}	
-
-	
-	
 	}
 	wrefresh(w);
 }
