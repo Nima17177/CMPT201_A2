@@ -1,3 +1,7 @@
+// CMPT 201, A2, Group 1
+// Nathan Alex Sequeira (3141620)
+// Nima Houshyar (1741854)
+
 #ifndef MAP_H
 #define MAP_H
 
@@ -177,3 +181,4 @@ void map_starFall(WINDOW *w);
 void map_endScreen(WINDOW *w, char *msg);
 
 #endif
+

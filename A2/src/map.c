@@ -1,3 +1,7 @@
+// CMPT 201, A2, Group 1
+// Nathan Alex Sequeira (3141620)
+// Nima Houshyar (1741854)
+
 #include "map.h"
 
 #define PORTAL '@'
@@ -79,6 +83,8 @@ void map_createUi(WINDOW *w, int lives, int enemies)
 	mvwprintw(w, 26, 27, "Use <arrows> to move player");
 	mvwprintw(w, 27, 24, "Press <space> to activate portal ( %c )", PORTAL);
 	mvwprintw(w, 28, 3, "When over a powerup ( %c ), press <1> or <2> to freeze half of the enemies", POWER);
+	mvwprintw(w, 20, 62, "<1> Freezes odd"); 
+	mvwprintw(w, 21, 62, "<2> Freezes even"); 
 	wattroff(w, COLOR_PAIR(2));
 	wattron(w, COLOR_PAIR(6));
 	mvwprintw(w, 1, 8, "Lives: %d  ", lives);
@@ -161,14 +167,14 @@ void map_updateTime(WINDOW *w, int time)
 void map_displayPause(WINDOW *w)
 {
 	wattron(w, COLOR_PAIR(3)); 
-	mvwprintw(w, 5, 38, "Game Paused");
+	mvwprintw(w, 5, 35, "Game Paused");
         wattroff(w, COLOR_PAIR(3)); 
 	wrefresh(w);
 }
 
 void map_removePause(WINDOW *w)
 {
-	mvwprintw(w, 5, 38, "           "); 
+	mvwprintw(w, 5, 35, "           "); 
 }
 
 char map_quitGame(WINDOW *w)
@@ -199,7 +205,7 @@ void map_gameDone(WINDOW *w, int x)
 	map_starFall(w);
 	mvwhline(w, MAX_Y - 4, 1, ACS_HLINE, MAX_X - 2);
 	wattron(w, COLOR_PAIR(6));
-	mvwprintw(w, MAX_Y - 2, MAX_X/2 - 17, "Press any key to continue.");
+	mvwprintw(w, MAX_Y - 2, MAX_X/2 - 12, "Press any key to continue");
 	wattroff(w, COLOR_PAIR(6));
 	wrefresh(w);
 	if (x == -1)
@@ -289,3 +295,5 @@ void map_endScreen(WINDOW *w, char *msg)
 	nodelay(stdscr, FALSE); 
 	wrefresh(w);
 }
+
+

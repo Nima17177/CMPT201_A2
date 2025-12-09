@@ -1,3 +1,7 @@
+// CMPT 201, A2, Group 1
+// Nathan Alex Sequeira (3141620)
+// Nima Houshyar (1741854)
+
 #ifndef SPRITE_H
 #define SPRITE_H
 
@@ -80,5 +84,6 @@ void sprite_move(WINDOW *w, sprite *s);
 void sprite_changeVel(sprite *s);
 
 #endif
+
 
 

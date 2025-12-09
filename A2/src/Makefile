@@ -1,3 +1,7 @@
+# CMPT 201, A2, Group 1
+# Nathan Alex Sequeira (3141620)
+# Nima Houshyar (1741854)
+
 CC = gcc
 CFLAGS = -Wall -g -std=c11
 LDFLAGS = -lm -lc -lncurses -ltinfo
@@ -41,4 +45,5 @@ Mem_valgrind: $(APP)
 
 debug: $(APP)
 	gdb $(APP)
+
 

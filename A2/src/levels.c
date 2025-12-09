@@ -1,3 +1,7 @@
+// CMPT 201, A2, Group 1
+// Nathan Alex Sequeira (3141620)
+// // Nima Houshyar (1741854)
+
 #include "levels.h"
 #include "sprite.h"
 #include "map.h"
@@ -227,3 +231,4 @@ void level_checkCollision(WINDOW *w, time_t *stoppedTime, sprite *player, int en
 		}
 	}
 }
+

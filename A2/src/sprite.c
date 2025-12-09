@@ -1,3 +1,7 @@
+// CMPT 201, A2, Group 1
+// Nathan Alex Sequeira (3141620)
+// Nima Houshyar (1741854)
+
 #include "sprite.h"
 
 sprite sprite_createPlayer(int playerLives)
