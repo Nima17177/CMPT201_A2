@@ -2,21 +2,20 @@ CC = gcc
 CFLAGS = -Wall -g -std=c11
 LDFLAGS = -lm -lc -lncurses -ltinfo
 
-HDRmod = $(wildcard *.h)
-SRCmod = $(HDRmod:.h=.c)
-OBJmod = $(HDRmod:.h=.o)
+HDR = $(wildcard *.h)
+SRC = $(wildcard *.c)
+OBJ = $(SRC:.c=.o)
 
-SRCmain = main.c
-OBJmain = $(SRCmain:.c=.o) $(OBJmod)
-APP = MacPan.out
+APP = ../bin/appGame
 
-DOXY = DOCUMENTATION/doxyfile
+DOXY = ../doc/doxyfile
 
-$(APP): $(OBJmain) $(OBJmod) $(HDRmod)
+
+$(APP): $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 %.o: %.c %.h
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c $< -o $@
 
 Doc: 
 	doxygen $(DOXY)
@@ -24,11 +23,18 @@ Doc:
 
 PHONY: run clean Mem_valgrind debug
 
-run: $(APP)
+run: 
 	./$(APP)
 
 clean:
-	rm *.o $(APP)
+	rm $(OBJ)
+
+delapp:
+	rm $(APP)
+
+deldox:
+	rm -r ../doc/html
+	rm -r ../doc/latex
 
 Mem_valgrind: $(APP)
 	valgrind ./$(APP)
