@@ -210,7 +210,6 @@ void map_loseScreen(WINDOW *w)
 void map_winScreen(WINDOW *w)
 {
 	map_EndScreen(w, "YOU WIN!");
-	
 }
 void map_quitScreen(WINDOW *w)
 {
