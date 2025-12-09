@@ -86,6 +86,7 @@ void map_createUi(WINDOW *w, int lives, int enemies)
 	mvwprintw(w, 10, 61, "Powerup Cooldown: "); 
 	wattroff(w, COLOR_PAIR(6));
 	mvwprintw(w, 11, 70, "0"); 
+	map_vines(w); 
 	wrefresh(w);
 }
 
@@ -109,24 +110,6 @@ void map_vines(WINDOW *w)
 		mvwaddch(w, y , 11, ACS_LRCORNER);
 	}
 	mvwhline(w, 7 , 68, ACS_HLINE, 7);
-	for (int y = 8; y < 25; y++)
-	{
-		mvwaddch(w, y , 73, ACS_ULCORNER);
-	}
-	for (int y = 8; y < 25; y++)
-	{
-		mvwaddch(w, y , 74, ACS_LRCORNER);
-	}
-	for (int y = 8; y < 25; y++)
-	{
-		mvwaddch(w, y , 68, ACS_ULCORNER);
-	}
-	for (int y = 8; y < 25; y++)
-	{
-		mvwaddch(w, y , 69, ACS_LRCORNER);
-	}
-	
-
 }
 
 bool map_isWall(WINDOW *w, int y, int x)
@@ -195,7 +178,7 @@ void map_updateTime(WINDOW *w, int time)
 	mvwprintw(w, 11, 70, "          "); 
 	mvwprintw(w, 11, 70, "%d", time);
 	box(w, 0, 0); 
-        wrefresh(w);	
+	wrefresh(w);	
 }
 
 void map_gameDone(WINDOW *w, int x)
@@ -244,19 +227,7 @@ void map_starFall(WINDOW *w)
 	wrefresh(w);
 }
 
-void map_loseScreen(WINDOW *w)
-{
-	map_EndScreen(w, "GAME OVER");
-}
-void map_winScreen(WINDOW *w)
-{
-	map_EndScreen(w, "YOU WIN!");
-}
-void map_quitScreen(WINDOW *w)
-{
-	map_EndScreen(w, "QUIT");
-}
-void map_EndScreen(WINDOW *w, char *msg)
+void map_endScreen(WINDOW *w, char *msg)
 {
 	int len = strlen(msg);
 	int startx = 3;

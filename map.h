@@ -43,6 +43,8 @@ void map_createHard(WINDOW *w);
  */
 void map_createUi(WINDOW *w, int lives, int enemies);
 
+void map_vines(WINDOW *w); 
+
 /**
  * @brief Checks if the given coordinates are a wall.
  * @param The WINDOW pointer 'w' which is the window onto which everything has been printed; and the integers 'y' and 'x' which represent the coordinates that must be checked.
@@ -99,6 +101,15 @@ void map_decrementLives(WINDOW *w, int *lives);
  */
 void map_decrementEnemies(WINDOW *w, int *enemies);
 
+/**
+ * @brief 
+ * @param 
+ * @pre None
+ * @post 
+ * @throws None
+ * @returns None
+ * @see 
+ */
 void map_updateTime(WINDOW *w, int time);
 
 /**
@@ -122,28 +133,6 @@ void map_gameDone(WINDOW *w, int x);
  * @see map_gameDone
  */
 void map_starFall(WINDOW *w);
-
-/**
- * @brief 
- * @param The WINDOW pointer 'w' which is the window onto which everything must be printed.
- * @pre None
- * @post 
- * @throws None
- * @returns None
- * @see map_gameDone
- */
-void map_winScreen(WINDOW *w);
-
-/**
- * @brief 
- * @param The WINDOW pointer 'w' which is the window onto which everything must be printed.
- * @pre None
- * @post 
- * @throws None
- * @returns None
- * @see map_gameDone
- */
-void map_loseScreen(WINDOW *w);
 
 /**
  * @brief 
