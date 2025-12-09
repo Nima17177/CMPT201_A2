@@ -89,8 +89,6 @@ void map_createUi(WINDOW *w, int lives, int enemies)
 	wrefresh(w);
 }
 
-<<<<<<< Updated upstream
-=======
 void map_vines(WINDOW *w)
 {
 	mvwhline(w, 7 , 5, ACS_HLINE, 7);
@@ -131,7 +129,6 @@ void map_vines(WINDOW *w)
 
 }
 
->>>>>>> Stashed changes
 bool map_isWall(WINDOW *w, int y, int x)
 {
 	if (mvwinch(w, y, x) == '|') return true;
@@ -247,9 +244,6 @@ void map_starFall(WINDOW *w)
 	wrefresh(w);
 }
 
-<<<<<<< Updated upstream
-void map_endScreen(WINDOW *w, char *msg)
-=======
 void map_loseScreen(WINDOW *w)
 {
 	map_EndScreen(w, "GAME OVER");
@@ -263,7 +257,6 @@ void map_quitScreen(WINDOW *w)
 	map_EndScreen(w, "QUIT");
 }
 void map_EndScreen(WINDOW *w, char *msg)
->>>>>>> Stashed changes
 {
 	int len = strlen(msg);
 	int startx = 3;
