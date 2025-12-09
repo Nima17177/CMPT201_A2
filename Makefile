@@ -12,7 +12,6 @@ APP = MacPan.out
 
 DOXY = DOCUMENTATION/doxyfile
 
-
 $(APP): $(OBJmain) $(OBJmod) $(HDRmod)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
