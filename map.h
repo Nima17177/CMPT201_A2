@@ -41,29 +41,7 @@ void map_createHard(WINDOW *w);
  * @returns None
  * @see display_level
  */
-void map_createUi(WINDOW *w);
-
-/**
- * @brief Prints the game status.
- * @param The WINDOW pointer 'w' which is the window onto which the game status must be drawn.
- * @pre None
- * @post The game status is printed onto the window.
- * @throws None
- * @returns None
- * @see display_level
- */
-void map_status(WINDOW *w, int lives, int enemies);
-
-/**
- * @brief
- * @param The WINDOW pointer 'w' which is the window onto which the vines must be drawn.
- * @pre
- * @post
- * @throws None
- * @returns None
- * @see
- */
-void map_vines(WINDOW *w);
+void map_createUi(WINDOW *w, int lives, int enemies);
 
 /**
  * @brief Checks if the given coordinates are a wall.
@@ -121,6 +99,8 @@ void map_decrementLives(WINDOW *w, int *lives);
  */
 void map_decrementEnemies(WINDOW *w, int *enemies);
 
+void map_updateTime(WINDOW *w, int time);
+
 /**
  * @brief Creates a game over message.
  * @param The WINDOW pointer 'w' which is the window onto which everything has been printed; and the integer 'x' which represents how the game ended: 1 = lost, 2 = won, 3 = quit.
@@ -174,7 +154,7 @@ void map_loseScreen(WINDOW *w);
  * @returns None
  * @see map_gameDone
  */
-void map_quitScreen(WINDOW *w);
+void map_endScreen(WINDOW *w, char *msg);
 
 #endif
 

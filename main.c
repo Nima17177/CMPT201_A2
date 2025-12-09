@@ -106,7 +106,7 @@ void splashPage(WINDOW *w)
 	mvaddch((int)(0.2*MAX_Y), (int)(0.525*MAX_X), ACS_URCORNER);
 	mvhline((int)(0.2*MAX_Y), (int)(0.4875*MAX_X), ACS_HLINE, (int)(0.0375*MAX_X));
 	attron(COLOR_PAIR(5));
-	char *message[] = {"(not Pac-Man)", "Nathan Alex Sequeira (3141620)", "Nima Houshyar (xxxxxxx)", "Controls", "Use <arrows> to move player", "Press <space> to activate portal", "When over a powerup, press <1> or <2> to freeze half of the enemies", "Press <P> to pause", "Press <Q> to quit ", "Press <E> to start easy", "Press <H> to start hard"};
+	char *message[] = {"(not Pac-Man)", "Nathan Alex Sequeira (3141620)", "Nima Houshyar (1741854)", "Controls", "Use <arrows> to move player", "Press <space> to activate portal", "When over a powerup, press <1> or <2> to freeze half of the enemies", "Press <P> to pause", "Press <Q> to quit ", "Press <E> to start easy", "Press <H> to start hard"};
 	int y, x;
 	attron(COLOR_PAIR(5));
 	y = 0.367 * MAX_Y;

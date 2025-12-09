@@ -1,0 +1,19 @@
+@mainpage Mac-Pan
+
+Authors:
+- Nathan Alex Sequeira (3141620)
+- Nima Houshyar (1741854)
+CMPT 201 A2
+- Lab instructor: Hanan Saleh, X01L
+- Lecture instructor: Shokry Shamseldin, AS02
+
+# GAME PLAN
+    MacPan is a Pac-Man–inspired game built using ncurses. <br>
+    The objective is to freeze and eat every enemy on the map. When enemies are unfrozen, the player needs to avoid them and search for a power-up that lets them freeze them again. <br>
+    Both difficulty modes use maps with the same overall dimensions, but Easy mode has wider pathways and only two enemies, while Hard mode has narrower pathways and eight enemies. <br>
+    The game also includes portals and power-ups. <br>
+    When standing over a portal, the player can activate it using the space bar, and then will be teleported to the other corner of the map. <br>
+    When standing over a power-up, pressing 1 or 2 freezes half of the enemies: 1 freezes enemies with odd indices, and 2 freezes those with even indices. <br>
+
+# MILESTONES & PROJECT PLAN
+    Date: Milestone

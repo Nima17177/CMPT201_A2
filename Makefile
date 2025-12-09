@@ -8,8 +8,9 @@ OBJmod = $(HDRmod:.h=.o)
 
 SRCmain = main.c
 OBJmain = $(SRCmain:.c=.o) $(OBJmod)
-
 APP = MacPan.out
+
+DOXY = DOCUMENTATION/doxyfile
 
 
 $(APP): $(OBJmain) $(OBJmod) $(HDRmod)
@@ -18,12 +19,21 @@ $(APP): $(OBJmain) $(OBJmod) $(HDRmod)
 %.o: %.c %.h
 	$(CC) $(CFLAGS) -c $<
 
+DOC: 
+	doxygen $(DOXY)
 
-PHONY: run clean
+
+PHONY: run clean Mem_valgrind debug
 
 run: $(APP)
 	./$(APP)
 
 clean:
 	rm *.o $(APP)
+
+Mem_valgrind: $(APP)
+	valgrind ./$(APP)
+
+debug: $(APP)
+	gdb $(APP)
 

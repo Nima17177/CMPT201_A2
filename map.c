@@ -51,7 +51,7 @@ void map_createHard(WINDOW *w)
 	wrefresh(w);
 }
 
-void map_createUi(WINDOW *w)
+void map_createUi(WINDOW *w, int lives, int enemies)
 {
 	// Title
 	char *t1 = "M  A  C";
@@ -80,23 +80,13 @@ void map_createUi(WINDOW *w)
 	mvwprintw(w, 27, 24, "Press <space> to activate portal ( %c )", PORTAL);
 	mvwprintw(w, 28, 3, "When over a powerup ( %c ), press <1> or <2> to freeze half of the enemies", POWER);
 	wattroff(w, COLOR_PAIR(2));
-	map_vines(w);
-	wrefresh(w);
-}
-
-void map_status(WINDOW *w, int lives, int enemies)
-{
 	wattron(w, COLOR_PAIR(6));
 	mvwprintw(w, 1, 8, "Lives: %d  ", lives);
 	mvwprintw(w, 1, 62, "Enemies: %d  ", enemies);
+	mvwprintw(w, 10, 61, "Powerup Cooldown: "); 
 	wattroff(w, COLOR_PAIR(6));
+	mvwprintw(w, 11, 70, "0"); 
 	wrefresh(w);
-}
-
-void map_vines(WINDOW *w)
-{
-	mvwaddch(w, 10, 4, ACS_ULCORNER);
-	mvwaddch(w, 11, 4, ACS_URCORNER);
 }
 
 bool map_isWall(WINDOW *w, int y, int x)
@@ -160,22 +150,32 @@ void map_decrementEnemies(WINDOW *w, int *enemies)
 	wrefresh(w);
 }
 
+void map_updateTime(WINDOW *w, int time)
+{
+	mvwprintw(w, 11, 70, "          "); 
+	mvwprintw(w, 11, 70, "%d", time);
+	box(w, 0, 0); 
+        wrefresh(w);	
+}
+
 void map_gameDone(WINDOW *w, int x)
 {
 	map_starFall(w);
+	mvwhline(w, MAX_Y - 4, 1, ACS_HLINE, MAX_X - 2);
+	mvwprintw(w, MAX_Y - 2, MAX_X/2 - 17, "Press any key to continue.");
+	wrefresh(w);
 	if (x == -1)
 	{
-		map_loseScreen(w);
+		map_endScreen(w, "YOU LOST");
 	}
 	else if (x == -2)
 	{
-		map_winScreen(w);
+		map_endScreen(w, "YOU WON");
 	}
 	else
 	{
-		map_quitScreen(w);
+		map_endScreen(w, "QUIT");
 	}
-	wrefresh(w);
 }
 
 void map_starFall(WINDOW *w)
@@ -202,27 +202,12 @@ void map_starFall(WINDOW *w)
 	wrefresh(w);
 }
 
-void map_loseScreen(WINDOW *w)
+void map_endScreen(WINDOW *w, char *msg)
 {
-	mvwprintw(w, 15, 15, "You Lost");
-	mvwprintw(w, 24, 15, "Press any key to continue.");
-}
-
-void map_winScreen(WINDOW *w)
-{
-	mvwprintw(w, 15, 15, "You Won");
-	mvwprintw(w, 24, 15, "Press any key to continue.");
-}
-
-void map_quitScreen(WINDOW *w)
-{
-    char *msg = "QUIT";
 	int len = strlen(msg);
 	int startx = 3;
 	int starty = 3;
 	//Small box inside the window
-	mvwhline(w, MAX_Y - 4, 1, ACS_HLINE, MAX_X - 2);
-	mvwprintw(w, MAX_Y - 2, MAX_X/2 - 17, "Press <Q> then any key to continue.");
 
 	int dy = 1;
 	int dx = 1;
@@ -255,7 +240,7 @@ void map_quitScreen(WINDOW *w)
 			dy = -dy;
 		}
 		int ch = getch();
-		if (ch == 'q' || ch == 'Q')
+		if (ch != ERR)
 		{
 			break;
 		}	

@@ -7,17 +7,16 @@ void display_level(int i)
 	WINDOW *w = newwin(MAX_Y, MAX_X, ORIGIN_Y, ORIGIN_X);
 	box(w, 0, 0);
 	wrefresh(w);
-	map_createUi(w);
 	if (i == 0)
 	{
 		map_createEasy(w);
-		map_status(w, 5, 2);
+		map_createUi(w, 5, 2);
 		level_createSprites(w, 5, 2);
 	}
 	else
 	{
 		map_createHard(w);
-		map_status(w, 3, 8);
+		map_createUi(w, 3, 8);
 		level_createSprites(w, 3, 8);
 	}
 }
@@ -62,12 +61,16 @@ void level_run(WINDOW *w, sprite player, int enemyCount, sprite enemies[enemyCou
 			{
 				gameStage = -1;
 			}
+			if (stoppedTime > 0)
+			{
+				map_updateTime(w, (15-(time(NULL)-stoppedTime))); 
+			}
 		}
 		napms(150);
 	}
 	map_gameDone(w, gameStage);
-	nodelay(stdscr, FALSE);
-	getch();
+	nodelay(stdscr, FALSE); 
+	endwin(); 
 }
 
 void level_checkInput(WINDOW *w, int input, int *gameStage, time_t *stoppedTime, int *stoppedEnemy, sprite *player, int enemyCount, sprite *enemies)
@@ -160,6 +163,7 @@ void level_updateFrame(WINDOW *w, time_t *stoppedTime, int stoppedEnemy, sprite 
 		if ((time(NULL) - *stoppedTime) >= 15) // Cooldown 15 seconds. Unfreeze enemies.
 		{
 			*stoppedTime = 0;
+			map_updateTime(w, 0); 
 			for (int i = stoppedEnemy; i < enemyCount; i+=2)
 			{
 				if (enemies[i].life == 1) // Enemy is Alive & Frozen. Do this check so that we don't unfreeze dead enemies.
@@ -194,6 +198,8 @@ void level_checkCollision(WINDOW *w, time_t *stoppedTime, sprite *player, int en
 			{
 				sprite_reset(w, player, enemyCount, enemies);
 				map_decrementLives(w, &player->life);
+				stoppedTime = 0;
+				map_updateTime(w, 0); 
 				break;
 			}
 		}
