@@ -19,7 +19,7 @@ $(APP): $(OBJmain) $(OBJmod) $(HDRmod)
 %.o: %.c %.h
 	$(CC) $(CFLAGS) -c $<
 
-DOC: 
+Doc: 
 	doxygen $(DOXY)
 
 
