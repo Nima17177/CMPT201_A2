@@ -114,10 +114,34 @@ void map_decrementEnemies(WINDOW *w, int *enemies);
  */
 void map_updateTime(WINDOW *w, int time);
 
+/**                                                                                                                                                          * @brief Displays a message that the game has paused. 
+ * @param The WINDOW pointer 'w' which is the window onto which everything must be printed.
+ * @pre None
+ * @post The message is printed onto 'w'.
+ * @throws None
+ * @returns None
+ * @see levels_run
+ */
 void map_displayPause(WINDOW *w);
 
+/**                                                                                                                                                          * @brief Removes the pause message. 
+ * @param The WINDOW pointer 'w' which is the window onto which everything has been printed.
+ * @pre None
+ * @post The message has been removed. 
+ * @throws None
+ * @returns None
+ * @see levels_run
+ */
 void map_removePause(WINDOW *w); 
 
+/**                                                                                                                                                          * @brief Prints out a quit message and waits for the user to confirm quit. 
+ * @param The WINDOW pointer 'w' which is the window onto which everything must be printed.
+ * @pre None
+ * @post The quit message is removed once the user inputs 'y' or 'n'
+ * @throws None
+ * @returns A character that saves the user input. 
+ * @see levels_run
+ */
 char map_quitGame(WINDOW *w); 
 
 /**

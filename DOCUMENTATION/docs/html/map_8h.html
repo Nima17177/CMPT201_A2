@@ -144,6 +144,15 @@ Functions</h2></td></tr>
 <tr class="memdesc:a16c7e9f207bcf48df93f54b7dc64dfc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the time left on powerup cooldown. <br />
   <a href="#a16c7e9f207bcf48df93f54b7dc64dfc9">More...</a><br /></td></tr>
 <tr class="separator:a16c7e9f207bcf48df93f54b7dc64dfc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a999b6d3b0faec33ef4836bd6a68f14c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#a999b6d3b0faec33ef4836bd6a68f14c9">map_displayPause</a> (WINDOW *w)</td></tr>
+<tr class="memdesc:a999b6d3b0faec33ef4836bd6a68f14c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays a message that the game has paused.  <a href="#a999b6d3b0faec33ef4836bd6a68f14c9">More...</a><br /></td></tr>
+<tr class="separator:a999b6d3b0faec33ef4836bd6a68f14c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d1dd579fc2f957db7b2376a00cd6e96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#a9d1dd579fc2f957db7b2376a00cd6e96">map_removePause</a> (WINDOW *w)</td></tr>
+<tr class="memdesc:a9d1dd579fc2f957db7b2376a00cd6e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the pause message.  <a href="#a9d1dd579fc2f957db7b2376a00cd6e96">More...</a><br /></td></tr>
+<tr class="separator:a9d1dd579fc2f957db7b2376a00cd6e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee1f5ad72e922442e9c197e5f55fa557"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#aee1f5ad72e922442e9c197e5f55fa557">map_quitGame</a> (WINDOW *w)</td></tr>
+<tr class="memdesc:aee1f5ad72e922442e9c197e5f55fa557"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints out a quit message and waits for the user to confirm quit.  <a href="#aee1f5ad72e922442e9c197e5f55fa557">More...</a><br /></td></tr>
+<tr class="separator:aee1f5ad72e922442e9c197e5f55fa557"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe68d90439c79ee0610399f02f61e0ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#afe68d90439c79ee0610399f02f61e0ad">map_gameDone</a> (WINDOW *w, int x)</td></tr>
 <tr class="memdesc:afe68d90439c79ee0610399f02f61e0ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a End Screen message based on outcome or input.  <a href="#afe68d90439c79ee0610399f02f61e0ad">More...</a><br /></td></tr>
 <tr class="separator:afe68d90439c79ee0610399f02f61e0ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -438,6 +447,42 @@ The integer pointer 'lives' which saves the amount of lives the player currently
 
 </div>
 </div>
+<a id="a999b6d3b0faec33ef4836bd6a68f14c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a999b6d3b0faec33ef4836bd6a68f14c9">&#9670;&nbsp;</a></span>map_displayPause()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void map_displayPause </td>
+          <td>(</td>
+          <td class="paramtype">WINDOW *&#160;</td>
+          <td class="paramname"><em>w</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Displays a message that the game has paused. </p>
+<p>*</p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">The</td><td>WINDOW pointer 'w' which is the window onto which everything must be printed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>None </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>The message is printed onto 'w'. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>levels_run </dd></dl>
+
+</div>
+</div>
 <a id="adfd1c0ce4961cdd2e38a49a3565fb4dd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adfd1c0ce4961cdd2e38a49a3565fb4dd">&#9670;&nbsp;</a></span>map_endScreen()</h2>
 
@@ -683,6 +728,78 @@ The integers 'y' and 'x' which represent the coordinates that must be checked. <
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A bool if the given coordinates have a wall. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="levels_8h.html#aff1d9205a942c539b0fa0fe84cd55743" title="Updates the frame by moving sprites, and/or unfreezing enemies. ">level_updateFrame</a> </dd></dl>
+
+</div>
+</div>
+<a id="aee1f5ad72e922442e9c197e5f55fa557"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee1f5ad72e922442e9c197e5f55fa557">&#9670;&nbsp;</a></span>map_quitGame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char map_quitGame </td>
+          <td>(</td>
+          <td class="paramtype">WINDOW *&#160;</td>
+          <td class="paramname"><em>w</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints out a quit message and waits for the user to confirm quit. </p>
+<p>*</p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">The</td><td>WINDOW pointer 'w' which is the window onto which everything must be printed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>None </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>The quit message is removed once the user inputs 'y' or 'n' </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A character that saves the user input. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>levels_run </dd></dl>
+
+</div>
+</div>
+<a id="a9d1dd579fc2f957db7b2376a00cd6e96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d1dd579fc2f957db7b2376a00cd6e96">&#9670;&nbsp;</a></span>map_removePause()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void map_removePause </td>
+          <td>(</td>
+          <td class="paramtype">WINDOW *&#160;</td>
+          <td class="paramname"><em>w</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes the pause message. </p>
+<p>*</p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">The</td><td>WINDOW pointer 'w' which is the window onto which everything has been printed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>None </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>The message has been removed. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>levels_run </dd></dl>
 
 </div>
 </div>

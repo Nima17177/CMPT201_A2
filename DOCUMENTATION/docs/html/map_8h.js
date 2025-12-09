@@ -9,11 +9,14 @@ var map_8h =
     [ "map_createUi", "map_8h.html#a0aec4b74e40289f00b7ecbd94515a195", null ],
     [ "map_decrementEnemies", "map_8h.html#a7abf4cbc6aaac6c8171f102217b45f69", null ],
     [ "map_decrementLives", "map_8h.html#a50dec3b9039dba56070a52d64e65314b", null ],
+    [ "map_displayPause", "map_8h.html#a999b6d3b0faec33ef4836bd6a68f14c9", null ],
     [ "map_endScreen", "map_8h.html#adfd1c0ce4961cdd2e38a49a3565fb4dd", null ],
     [ "map_gameDone", "map_8h.html#afe68d90439c79ee0610399f02f61e0ad", null ],
     [ "map_isPortal", "map_8h.html#a900f8ba1e2fe0243fe5fbcfdf59d980d", null ],
     [ "map_isPower", "map_8h.html#a146e3a522f75e3aa26a4628b6d6c155d", null ],
     [ "map_isWall", "map_8h.html#a1deea0cfb49cb0ab0da5eba1c5def139", null ],
+    [ "map_quitGame", "map_8h.html#aee1f5ad72e922442e9c197e5f55fa557", null ],
+    [ "map_removePause", "map_8h.html#a9d1dd579fc2f957db7b2376a00cd6e96", null ],
     [ "map_starFall", "map_8h.html#a8c1dec424aae1de8492d33b0e5f1d8a9", null ],
     [ "map_updateTime", "map_8h.html#a16c7e9f207bcf48df93f54b7dc64dfc9", null ]
 ];
