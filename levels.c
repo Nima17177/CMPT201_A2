@@ -2,9 +2,9 @@
 #include "sprite.h"
 #include "map.h"
 
-void display_level(int i)
+void display_level(int i, WINDOW *w)
 {
-	WINDOW *w = newwin(MAX_Y, MAX_X, ORIGIN_Y, ORIGIN_X);
+	//WINDOW *w = newwin(MAX_Y, MAX_X, ORIGIN_Y, ORIGIN_X);
 	box(w, 0, 0);
 	wrefresh(w);
 	if (i == 0)
@@ -70,7 +70,9 @@ void level_run(WINDOW *w, sprite player, int enemyCount, sprite enemies[enemyCou
 	}
 	map_gameDone(w, gameStage);
 	nodelay(stdscr, FALSE); 
-	endwin(); 
+	//endwin();
+	//delwin(w);
+	wclear(w);   
 }
 
 void level_checkInput(WINDOW *w, int input, int *gameStage, time_t *stoppedTime, int *stoppedEnemy, sprite *player, int enemyCount, sprite *enemies)

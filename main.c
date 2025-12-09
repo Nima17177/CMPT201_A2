@@ -170,16 +170,19 @@ int main(void)
 		if (input == 'e' || input == 'h')
 		{
 			map_starFall(w);
-			endwin();
+			//endwin();
+			//delwin(w); 
+			wclear(w);
 			if (input == 'e')
 			{
-				display_level(0);
+				display_level(0, w);
 			}
 			else
 			{
-				display_level(1);
+				display_level(1, w);
 			}
-			w = newwin(MAX_Y, MAX_X, ORIGIN_Y, ORIGIN_X);
+			//w = newwin(MAX_Y, MAX_X, ORIGIN_Y, ORIGIN_X);
+			wclear(w); 
 			box(w, 0, 0);
 			splashPage(w);
 			wrefresh(w);
@@ -190,6 +193,7 @@ int main(void)
 			break;
 		}
 	}
+	delwin(w); 
 	endwin();
 	curs_set(TRUE);
 	return 0;

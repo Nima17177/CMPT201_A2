@@ -1,0 +1,129 @@
+\hypertarget{main_8c}{}\section{/home/students/sequeiran/\+A2/main.c File Reference}
+\label{main_8c}\index{/home/students/sequeiran/\+A2/main.\+c@{/home/students/sequeiran/\+A2/main.\+c}}
+{\ttfamily \#include \char`\"{}levels.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}map.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$ncurses.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{main_8c_a9210334c367aeb3f7a2e2599f33e0fa1}{S\+P\+L\+A\+S\+H\+F\+I\+LE}}~\char`\"{}splashpage.\+txt\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8c_a7c0605f5e36dd8804660051439659706}{read\+File}} (F\+I\+LE $\ast$f, W\+I\+N\+D\+OW $\ast$w)
+\begin{DoxyCompactList}\small\item\em Reads coordinates for the game title from a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a546caea94b22493cea275a0b5d1380bd}{splash\+Page}} (W\+I\+N\+D\+OW $\ast$w)
+\begin{DoxyCompactList}\small\item\em Draws out the splash page. Contains the game title, instructions for playing the game, and instructions to start/quit a level. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em Main function. Creates the window and calls function to create splash page and levels. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{main_8c_a9210334c367aeb3f7a2e2599f33e0fa1}\label{main_8c_a9210334c367aeb3f7a2e2599f33e0fa1}} 
+\index{main.\+c@{main.\+c}!S\+P\+L\+A\+S\+H\+F\+I\+LE@{S\+P\+L\+A\+S\+H\+F\+I\+LE}}
+\index{S\+P\+L\+A\+S\+H\+F\+I\+LE@{S\+P\+L\+A\+S\+H\+F\+I\+LE}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{S\+P\+L\+A\+S\+H\+F\+I\+LE}{SPLASHFILE}}
+{\footnotesize\ttfamily \#define S\+P\+L\+A\+S\+H\+F\+I\+LE~\char`\"{}splashpage.\+txt\char`\"{}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{main.\+c@{main.\+c}!main@{main}}
+\index{main@{main}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Main function. Creates the window and calls function to create splash page and levels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+\char`\"{}levels\char`\"{}, \char`\"{}sprite\char`\"{} and \char`\"{}map\char`\"{} modules exist and have been compiled. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Runs the game 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8c_a7c0605f5e36dd8804660051439659706}\label{main_8c_a7c0605f5e36dd8804660051439659706}} 
+\index{main.\+c@{main.\+c}!read\+File@{read\+File}}
+\index{read\+File@{read\+File}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{read\+File()}{readFile()}}
+{\footnotesize\ttfamily void read\+File (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{f,  }\item[{W\+I\+N\+D\+OW $\ast$}]{w }\end{DoxyParamCaption})}
+
+
+
+Reads coordinates for the game title from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & F\+I\+LE pointer \textquotesingle{}f\textquotesingle{} which contains the coordinates to read, and the W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window to draw onto. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+The correct file has been opened, and the data written in it is in the pattern\+: \char`\"{}y\+\_\+ratio, x\+\_\+ratio, size\+\_\+ratio(for\+\_\+lines)/n\char`\"{}. The coordinates are in blocks for horizontal lines, vertical lines, upper left corner, lower left corner, lower right corner, and upper right corner in that order. The blocks are separated by \char`\"{}\+X/n\char`\"{}. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Part of the game title has been printed out. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{main_8c_a546caea94b22493cea275a0b5d1380bd}{splash\+Page}} 
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+splash\+Page will call read\+File twice, first to print \char`\"{}\+M\+A\+C\char`\"{} and then to print \char`\"{}\+P\+A\+N\char`\"{} 
+\end{DoxyNote}
+\mbox{\Hypertarget{main_8c_a546caea94b22493cea275a0b5d1380bd}\label{main_8c_a546caea94b22493cea275a0b5d1380bd}} 
+\index{main.\+c@{main.\+c}!splash\+Page@{splash\+Page}}
+\index{splash\+Page@{splash\+Page}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{splash\+Page()}{splashPage()}}
+{\footnotesize\ttfamily void splash\+Page (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w }\end{DoxyParamCaption})}
+
+
+
+Draws out the splash page. Contains the game title, instructions for playing the game, and instructions to start/quit a level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window to draw on. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+\textquotesingle{}w\textquotesingle{} has been initialized properly. Also, the macros \textquotesingle{}M\+A\+X\+\_\+Y\textquotesingle{} and \textquotesingle{}M\+A\+X\+\_\+X\textquotesingle{} have been defined in \char`\"{}map.\+h\char`\"{} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The splash page has been drawn onto \textquotesingle{}w\textquotesingle{} 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} 
+\end{DoxySeeAlso}

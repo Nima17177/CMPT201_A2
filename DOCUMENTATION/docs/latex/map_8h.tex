@@ -1,0 +1,483 @@
+\hypertarget{map_8h}{}\section{/home/students/sequeiran/\+A2/map.h File Reference}
+\label{map_8h}\index{/home/students/sequeiran/\+A2/map.\+h@{/home/students/sequeiran/\+A2/map.\+h}}
+{\ttfamily \#include $<$ncurses.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{map_8h_a985cc18be96dda7f59fd0400725e4aef}{M\+A\+X\+\_\+Y}}~30
+\begin{DoxyCompactList}\small\item\em The window\textquotesingle{}s maximum height. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{map_8h_a898606140dee9ce0adf096de00824d94}{M\+A\+X\+\_\+X}}~80
+\begin{DoxyCompactList}\small\item\em The window\textquotesingle{}s maximum width. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{map_8h_a8b847faaa49e47547adafd822c75eea7}{O\+R\+I\+G\+I\+N\+\_\+Y}}~1
+\begin{DoxyCompactList}\small\item\em The window\textquotesingle{}s origin y coordinate. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{map_8h_a801b4a8dae587b94276d327d6462baf4}{O\+R\+I\+G\+I\+N\+\_\+X}}~1
+\begin{DoxyCompactList}\small\item\em The window\textquotesingle{}s origin x coordinate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{map_8h_a3652e8aeeb107c1cc0f66a08b8fb4772}{map\+\_\+create\+Easy}} (W\+I\+N\+D\+OW $\ast$w)
+\begin{DoxyCompactList}\small\item\em Creates the map for easy mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8h_af5f85520ce43733ebda268496bd3d95f}{map\+\_\+create\+Hard}} (W\+I\+N\+D\+OW $\ast$w)
+\begin{DoxyCompactList}\small\item\em Creates the map for hard mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8h_a0aec4b74e40289f00b7ecbd94515a195}{map\+\_\+create\+Ui}} (W\+I\+N\+D\+OW $\ast$w, int lives, int enemies)
+\begin{DoxyCompactList}\small\item\em Creates the game UI. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{map_8h_a1deea0cfb49cb0ab0da5eba1c5def139}{map\+\_\+is\+Wall}} (W\+I\+N\+D\+OW $\ast$w, int y, int x)
+\begin{DoxyCompactList}\small\item\em Checks if the given coordinates are a wall. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8h_a900f8ba1e2fe0243fe5fbcfdf59d980d}{map\+\_\+is\+Portal}} (W\+I\+N\+D\+OW $\ast$w, int $\ast$y, int $\ast$x)
+\begin{DoxyCompactList}\small\item\em Checks if the given coordinates are a portal. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{map_8h_a146e3a522f75e3aa26a4628b6d6c155d}{map\+\_\+is\+Power}} (W\+I\+N\+D\+OW $\ast$w, char c)
+\begin{DoxyCompactList}\small\item\em Checks if the given tile has a power up. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8h_a50dec3b9039dba56070a52d64e65314b}{map\+\_\+decrement\+Lives}} (W\+I\+N\+D\+OW $\ast$w, int $\ast$lives)
+\begin{DoxyCompactList}\small\item\em Decrement player lives and update the game status. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8h_a7abf4cbc6aaac6c8171f102217b45f69}{map\+\_\+decrement\+Enemies}} (W\+I\+N\+D\+OW $\ast$w, int $\ast$enemies)
+\begin{DoxyCompactList}\small\item\em Decrement the amount of enemies left and update the game status. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8h_a16c7e9f207bcf48df93f54b7dc64dfc9}{map\+\_\+update\+Time}} (W\+I\+N\+D\+OW $\ast$w, int time)
+\begin{DoxyCompactList}\small\item\em Prints the time left on powerup cooldown. ~\newline
+ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8h_afe68d90439c79ee0610399f02f61e0ad}{map\+\_\+game\+Done}} (W\+I\+N\+D\+OW $\ast$w, int x)
+\begin{DoxyCompactList}\small\item\em Creates a End Screen message based on outcome or input. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8h_a8c1dec424aae1de8492d33b0e5f1d8a9}{map\+\_\+star\+Fall}} (W\+I\+N\+D\+OW $\ast$w)
+\begin{DoxyCompactList}\small\item\em Displays a star falling animation, that also clears the screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8h_adfd1c0ce4961cdd2e38a49a3565fb4dd}{map\+\_\+end\+Screen}} (W\+I\+N\+D\+OW $\ast$w, char $\ast$msg)
+\begin{DoxyCompactList}\small\item\em Creates an end screen with a message that bounces around the screen like D\+VD screensaver until the user presses a key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{map_8h_a898606140dee9ce0adf096de00824d94}\label{map_8h_a898606140dee9ce0adf096de00824d94}} 
+\index{map.\+h@{map.\+h}!M\+A\+X\+\_\+X@{M\+A\+X\+\_\+X}}
+\index{M\+A\+X\+\_\+X@{M\+A\+X\+\_\+X}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+X}{MAX\_X}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+X~80}
+
+
+
+The window\textquotesingle{}s maximum width. 
+
+\mbox{\Hypertarget{map_8h_a985cc18be96dda7f59fd0400725e4aef}\label{map_8h_a985cc18be96dda7f59fd0400725e4aef}} 
+\index{map.\+h@{map.\+h}!M\+A\+X\+\_\+Y@{M\+A\+X\+\_\+Y}}
+\index{M\+A\+X\+\_\+Y@{M\+A\+X\+\_\+Y}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+Y}{MAX\_Y}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+Y~30}
+
+
+
+The window\textquotesingle{}s maximum height. 
+
+\mbox{\Hypertarget{map_8h_a801b4a8dae587b94276d327d6462baf4}\label{map_8h_a801b4a8dae587b94276d327d6462baf4}} 
+\index{map.\+h@{map.\+h}!O\+R\+I\+G\+I\+N\+\_\+X@{O\+R\+I\+G\+I\+N\+\_\+X}}
+\index{O\+R\+I\+G\+I\+N\+\_\+X@{O\+R\+I\+G\+I\+N\+\_\+X}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{O\+R\+I\+G\+I\+N\+\_\+X}{ORIGIN\_X}}
+{\footnotesize\ttfamily \#define O\+R\+I\+G\+I\+N\+\_\+X~1}
+
+
+
+The window\textquotesingle{}s origin x coordinate. 
+
+\mbox{\Hypertarget{map_8h_a8b847faaa49e47547adafd822c75eea7}\label{map_8h_a8b847faaa49e47547adafd822c75eea7}} 
+\index{map.\+h@{map.\+h}!O\+R\+I\+G\+I\+N\+\_\+Y@{O\+R\+I\+G\+I\+N\+\_\+Y}}
+\index{O\+R\+I\+G\+I\+N\+\_\+Y@{O\+R\+I\+G\+I\+N\+\_\+Y}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{O\+R\+I\+G\+I\+N\+\_\+Y}{ORIGIN\_Y}}
+{\footnotesize\ttfamily \#define O\+R\+I\+G\+I\+N\+\_\+Y~1}
+
+
+
+The window\textquotesingle{}s origin y coordinate. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{map_8h_a3652e8aeeb107c1cc0f66a08b8fb4772}\label{map_8h_a3652e8aeeb107c1cc0f66a08b8fb4772}} 
+\index{map.\+h@{map.\+h}!map\+\_\+create\+Easy@{map\+\_\+create\+Easy}}
+\index{map\+\_\+create\+Easy@{map\+\_\+create\+Easy}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{map\+\_\+create\+Easy()}{map\_createEasy()}}
+{\footnotesize\ttfamily void map\+\_\+create\+Easy (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w }\end{DoxyParamCaption})}
+
+
+
+Creates the map for easy mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which the map must be drawn. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The map is drawn onto the window. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_a942205eac6bd5ffce7696ae29d1626b8}{display\+\_\+level}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{map_8h_af5f85520ce43733ebda268496bd3d95f}\label{map_8h_af5f85520ce43733ebda268496bd3d95f}} 
+\index{map.\+h@{map.\+h}!map\+\_\+create\+Hard@{map\+\_\+create\+Hard}}
+\index{map\+\_\+create\+Hard@{map\+\_\+create\+Hard}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{map\+\_\+create\+Hard()}{map\_createHard()}}
+{\footnotesize\ttfamily void map\+\_\+create\+Hard (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w }\end{DoxyParamCaption})}
+
+
+
+Creates the map for hard mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which the map must be drawn. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The map is drawn onto the window. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_a942205eac6bd5ffce7696ae29d1626b8}{display\+\_\+level}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{map_8h_a0aec4b74e40289f00b7ecbd94515a195}\label{map_8h_a0aec4b74e40289f00b7ecbd94515a195}} 
+\index{map.\+h@{map.\+h}!map\+\_\+create\+Ui@{map\+\_\+create\+Ui}}
+\index{map\+\_\+create\+Ui@{map\+\_\+create\+Ui}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{map\+\_\+create\+Ui()}{map\_createUi()}}
+{\footnotesize\ttfamily void map\+\_\+create\+Ui (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{int}]{lives,  }\item[{int}]{enemies }\end{DoxyParamCaption})}
+
+
+
+Creates the game UI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which the game UI must be drawn. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The game UI is printed onto the window. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_a942205eac6bd5ffce7696ae29d1626b8}{display\+\_\+level}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{map_8h_a7abf4cbc6aaac6c8171f102217b45f69}\label{map_8h_a7abf4cbc6aaac6c8171f102217b45f69}} 
+\index{map.\+h@{map.\+h}!map\+\_\+decrement\+Enemies@{map\+\_\+decrement\+Enemies}}
+\index{map\+\_\+decrement\+Enemies@{map\+\_\+decrement\+Enemies}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{map\+\_\+decrement\+Enemies()}{map\_decrementEnemies()}}
+{\footnotesize\ttfamily void map\+\_\+decrement\+Enemies (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{int $\ast$}]{enemies }\end{DoxyParamCaption})}
+
+
+
+Decrement the amount of enemies left and update the game status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which everything has been printed.~\newline
+The integer pointer \textquotesingle{}enemies\textquotesingle{} which saves the amount of enemies still alive. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+\textquotesingle{}enemies\textquotesingle{} is decremented, and the new number is printed onto \textquotesingle{}w\textquotesingle{}. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_af373dd192df9166162888aff8d2eb836}{level\+\_\+check\+Collision}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{map_8h_a50dec3b9039dba56070a52d64e65314b}\label{map_8h_a50dec3b9039dba56070a52d64e65314b}} 
+\index{map.\+h@{map.\+h}!map\+\_\+decrement\+Lives@{map\+\_\+decrement\+Lives}}
+\index{map\+\_\+decrement\+Lives@{map\+\_\+decrement\+Lives}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{map\+\_\+decrement\+Lives()}{map\_decrementLives()}}
+{\footnotesize\ttfamily void map\+\_\+decrement\+Lives (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{int $\ast$}]{lives }\end{DoxyParamCaption})}
+
+
+
+Decrement player lives and update the game status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which everything has been printed.~\newline
+The integer pointer \textquotesingle{}lives\textquotesingle{} which saves the amount of lives the player currently has. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+\textquotesingle{}lives\textquotesingle{} is decremented, and the new number is printed onto \textquotesingle{}w\textquotesingle{}. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_af373dd192df9166162888aff8d2eb836}{level\+\_\+check\+Collision}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{map_8h_adfd1c0ce4961cdd2e38a49a3565fb4dd}\label{map_8h_adfd1c0ce4961cdd2e38a49a3565fb4dd}} 
+\index{map.\+h@{map.\+h}!map\+\_\+end\+Screen@{map\+\_\+end\+Screen}}
+\index{map\+\_\+end\+Screen@{map\+\_\+end\+Screen}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{map\+\_\+end\+Screen()}{map\_endScreen()}}
+{\footnotesize\ttfamily void map\+\_\+end\+Screen (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{char $\ast$}]{msg }\end{DoxyParamCaption})}
+
+
+
+Creates an end screen with a message that bounces around the screen like D\+VD screensaver until the user presses a key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which everything must be printed.~\newline
+The string \textquotesingle{}msg\textquotesingle{} which is the message to be printed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+\textquotesingle{}msg\textquotesingle{} is a properly initialized string. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+None 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{map_8h_afe68d90439c79ee0610399f02f61e0ad}{map\+\_\+game\+Done}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{map_8h_afe68d90439c79ee0610399f02f61e0ad}\label{map_8h_afe68d90439c79ee0610399f02f61e0ad}} 
+\index{map.\+h@{map.\+h}!map\+\_\+game\+Done@{map\+\_\+game\+Done}}
+\index{map\+\_\+game\+Done@{map\+\_\+game\+Done}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{map\+\_\+game\+Done()}{map\_gameDone()}}
+{\footnotesize\ttfamily void map\+\_\+game\+Done (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{int}]{x }\end{DoxyParamCaption})}
+
+
+
+Creates a End Screen message based on outcome or input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which everything has been printed.~\newline
+The integer \textquotesingle{}x\textquotesingle{} which represents how the game ended\+: 1 = lost, 2 = won, 3 = quit. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The message is printed. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_a94f7663bad56c5069d33de816fbf571b}{level\+\_\+run}} \mbox{\hyperlink{map_8h_adfd1c0ce4961cdd2e38a49a3565fb4dd}{map\+\_\+end\+Screen}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{map_8h_a900f8ba1e2fe0243fe5fbcfdf59d980d}\label{map_8h_a900f8ba1e2fe0243fe5fbcfdf59d980d}} 
+\index{map.\+h@{map.\+h}!map\+\_\+is\+Portal@{map\+\_\+is\+Portal}}
+\index{map\+\_\+is\+Portal@{map\+\_\+is\+Portal}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{map\+\_\+is\+Portal()}{map\_isPortal()}}
+{\footnotesize\ttfamily void map\+\_\+is\+Portal (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{int $\ast$}]{y,  }\item[{int $\ast$}]{x }\end{DoxyParamCaption})}
+
+
+
+Checks if the given coordinates are a portal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which everything has been printed.~\newline
+The integer pointers \textquotesingle{}y\textquotesingle{} and \textquotesingle{}x\textquotesingle{} which represent the coordinates that must be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+If the coordinates are a portal, then the pointers are updated to the portal’s destination. If not, then they are set to -\/1. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_ace709168861a37d3cdb47c0e45fb4908}{level\+\_\+check\+Input}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{map_8h_a146e3a522f75e3aa26a4628b6d6c155d}\label{map_8h_a146e3a522f75e3aa26a4628b6d6c155d}} 
+\index{map.\+h@{map.\+h}!map\+\_\+is\+Power@{map\+\_\+is\+Power}}
+\index{map\+\_\+is\+Power@{map\+\_\+is\+Power}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{map\+\_\+is\+Power()}{map\_isPower()}}
+{\footnotesize\ttfamily bool map\+\_\+is\+Power (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{char}]{c }\end{DoxyParamCaption})}
+
+
+
+Checks if the given tile has a power up. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which everything has been printed.~\newline
+The character \textquotesingle{}c\textquotesingle{} which represets the tile that must be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+None 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+A bool if the given tile is a portal. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_ace709168861a37d3cdb47c0e45fb4908}{level\+\_\+check\+Input}} 
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+A character is sent instead of coordinates because the player is currently standing over the power up tile. 
+\end{DoxyNote}
+\mbox{\Hypertarget{map_8h_a1deea0cfb49cb0ab0da5eba1c5def139}\label{map_8h_a1deea0cfb49cb0ab0da5eba1c5def139}} 
+\index{map.\+h@{map.\+h}!map\+\_\+is\+Wall@{map\+\_\+is\+Wall}}
+\index{map\+\_\+is\+Wall@{map\+\_\+is\+Wall}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{map\+\_\+is\+Wall()}{map\_isWall()}}
+{\footnotesize\ttfamily bool map\+\_\+is\+Wall (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{int}]{y,  }\item[{int}]{x }\end{DoxyParamCaption})}
+
+
+
+Checks if the given coordinates are a wall. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which everything has been printed~\newline
+The integers \textquotesingle{}y\textquotesingle{} and \textquotesingle{}x\textquotesingle{} which represent the coordinates that must be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+None 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+A bool if the given coordinates have a wall. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_aff1d9205a942c539b0fa0fe84cd55743}{level\+\_\+update\+Frame}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{map_8h_a8c1dec424aae1de8492d33b0e5f1d8a9}\label{map_8h_a8c1dec424aae1de8492d33b0e5f1d8a9}} 
+\index{map.\+h@{map.\+h}!map\+\_\+star\+Fall@{map\+\_\+star\+Fall}}
+\index{map\+\_\+star\+Fall@{map\+\_\+star\+Fall}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{map\+\_\+star\+Fall()}{map\_starFall()}}
+{\footnotesize\ttfamily void map\+\_\+star\+Fall (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w }\end{DoxyParamCaption})}
+
+
+
+Displays a star falling animation, that also clears the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which everything must be printed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The screen is cleared. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\mbox{\Hypertarget{map_8h_a16c7e9f207bcf48df93f54b7dc64dfc9}\label{map_8h_a16c7e9f207bcf48df93f54b7dc64dfc9}} 
+\index{map.\+h@{map.\+h}!map\+\_\+update\+Time@{map\+\_\+update\+Time}}
+\index{map\+\_\+update\+Time@{map\+\_\+update\+Time}!map.\+h@{map.\+h}}
+\subsubsection{\texorpdfstring{map\+\_\+update\+Time()}{map\_updateTime()}}
+{\footnotesize\ttfamily void map\+\_\+update\+Time (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{int}]{time }\end{DoxyParamCaption})}
+
+
+
+Prints the time left on powerup cooldown. ~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which everything has been printed.~\newline
+The integer \textquotesingle{}time\textquotesingle{} which represents the time left on power ups cooldown. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The time is printed onto \textquotesingle{}w\textquotesingle{}. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+levels\+\_\+run 
+\end{DoxySeeAlso}

@@ -1,0 +1,193 @@
+\hypertarget{sprite_8h}{}\section{/home/students/sequeiran/\+A2/sprite.h File Reference}
+\label{sprite_8h}\index{/home/students/sequeiran/\+A2/sprite.\+h@{/home/students/sequeiran/\+A2/sprite.\+h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$ncurses.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsprite}{sprite}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structsprite}{sprite}} \mbox{\hyperlink{sprite_8h_a9ebe044eb55190daa81aaf08f41d1fd2}{sprite\+\_\+create\+Player}} (int player\+Lives)
+\begin{DoxyCompactList}\small\item\em Creates and initializes the player sprite. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structsprite}{sprite}} \mbox{\hyperlink{sprite_8h_ae94fa8125b1db6fefed7c53c9247d867}{sprite\+\_\+create\+Enemy}} (int i)
+\begin{DoxyCompactList}\small\item\em Creates and initializes the enemy sprite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8h_a1a774dcb086ee4fefb9bfbe2813d7171}{sprite\+\_\+reset}} (W\+I\+N\+D\+OW $\ast$w, \mbox{\hyperlink{structsprite}{sprite}} $\ast$player, int enemy\+Count, \mbox{\hyperlink{structsprite}{sprite}} $\ast$enemies)
+\begin{DoxyCompactList}\small\item\em Spawns the player and enemy sprites, or resets the positions to their spawn points. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8h_a299ac5dc7eee291af612a6aa2d4abbc5}{sprite\+\_\+move}} (W\+I\+N\+D\+OW $\ast$w, \mbox{\hyperlink{structsprite}{sprite}} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Moves the given sprite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8h_afd6ddfc176b080172146eeb6ee3bed87}{sprite\+\_\+change\+Vel}} (\mbox{\hyperlink{structsprite}{sprite}} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Randomly changes the velocity of the given sprite. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sprite_8h_afd6ddfc176b080172146eeb6ee3bed87}\label{sprite_8h_afd6ddfc176b080172146eeb6ee3bed87}} 
+\index{sprite.\+h@{sprite.\+h}!sprite\+\_\+change\+Vel@{sprite\+\_\+change\+Vel}}
+\index{sprite\+\_\+change\+Vel@{sprite\+\_\+change\+Vel}!sprite.\+h@{sprite.\+h}}
+\subsubsection{\texorpdfstring{sprite\+\_\+change\+Vel()}{sprite\_changeVel()}}
+{\footnotesize\ttfamily void sprite\+\_\+change\+Vel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsprite}{sprite}} $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+Randomly changes the velocity of the given sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & sprite structure pointer \textquotesingle{}s\textquotesingle{} which contains information about the sprite whose velocity must be changed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+The appropriate checks were done to make sure the sprite\textquotesingle{}s velocity should be changed. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The sprite\textquotesingle{}s x\+Vel and y\+Vel will be changed. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_aff1d9205a942c539b0fa0fe84cd55743}{level\+\_\+update\+Frame}} 
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+This function can be used on any sprite, but it should only be called on enemies to randomly change their velocity. The player\textquotesingle{}s velocity is changed by player input. 
+\end{DoxyNote}
+\mbox{\Hypertarget{sprite_8h_ae94fa8125b1db6fefed7c53c9247d867}\label{sprite_8h_ae94fa8125b1db6fefed7c53c9247d867}} 
+\index{sprite.\+h@{sprite.\+h}!sprite\+\_\+create\+Enemy@{sprite\+\_\+create\+Enemy}}
+\index{sprite\+\_\+create\+Enemy@{sprite\+\_\+create\+Enemy}!sprite.\+h@{sprite.\+h}}
+\subsubsection{\texorpdfstring{sprite\+\_\+create\+Enemy()}{sprite\_createEnemy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsprite}{sprite}} sprite\+\_\+create\+Enemy (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Creates and initializes the enemy sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & integer \textquotesingle{}i\textquotesingle{} which is the enemy\textquotesingle{}s index and symbol. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+None 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+A new sprite structure 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_a8120372d3f9fd0d09820305f131135b7}{level\+\_\+create\+Sprites}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{sprite_8h_a9ebe044eb55190daa81aaf08f41d1fd2}\label{sprite_8h_a9ebe044eb55190daa81aaf08f41d1fd2}} 
+\index{sprite.\+h@{sprite.\+h}!sprite\+\_\+create\+Player@{sprite\+\_\+create\+Player}}
+\index{sprite\+\_\+create\+Player@{sprite\+\_\+create\+Player}!sprite.\+h@{sprite.\+h}}
+\subsubsection{\texorpdfstring{sprite\+\_\+create\+Player()}{sprite\_createPlayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsprite}{sprite}} sprite\+\_\+create\+Player (\begin{DoxyParamCaption}\item[{int}]{player\+Lives }\end{DoxyParamCaption})}
+
+
+
+Creates and initializes the player sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & integer \textquotesingle{}player\+Lives\textquotesingle{} which is the amount of lives that the player must have at the start of the level. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+None 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+A new sprite structure 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_a8120372d3f9fd0d09820305f131135b7}{level\+\_\+create\+Sprites}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{sprite_8h_a299ac5dc7eee291af612a6aa2d4abbc5}\label{sprite_8h_a299ac5dc7eee291af612a6aa2d4abbc5}} 
+\index{sprite.\+h@{sprite.\+h}!sprite\+\_\+move@{sprite\+\_\+move}}
+\index{sprite\+\_\+move@{sprite\+\_\+move}!sprite.\+h@{sprite.\+h}}
+\subsubsection{\texorpdfstring{sprite\+\_\+move()}{sprite\_move()}}
+{\footnotesize\ttfamily void sprite\+\_\+move (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{\mbox{\hyperlink{structsprite}{sprite}} $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+Moves the given sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which the sprites must be drawn.~\newline
+The sprite structure pointer \textquotesingle{}s\textquotesingle{} which contains information about the sprite to be moved. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+The appropriate checks were done to make sure the sprite can be moved. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The sprite\textquotesingle{}s x\+Pos, y\+Pos, and tile will be changed, and they will be redrawn on the window. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_a8120372d3f9fd0d09820305f131135b7}{level\+\_\+create\+Sprites}} \mbox{\hyperlink{levels_8h_af373dd192df9166162888aff8d2eb836}{level\+\_\+check\+Collision}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{sprite_8h_a1a774dcb086ee4fefb9bfbe2813d7171}\label{sprite_8h_a1a774dcb086ee4fefb9bfbe2813d7171}} 
+\index{sprite.\+h@{sprite.\+h}!sprite\+\_\+reset@{sprite\+\_\+reset}}
+\index{sprite\+\_\+reset@{sprite\+\_\+reset}!sprite.\+h@{sprite.\+h}}
+\subsubsection{\texorpdfstring{sprite\+\_\+reset()}{sprite\_reset()}}
+{\footnotesize\ttfamily void sprite\+\_\+reset (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{\mbox{\hyperlink{structsprite}{sprite}} $\ast$}]{player,  }\item[{int}]{enemy\+Count,  }\item[{\mbox{\hyperlink{structsprite}{sprite}} $\ast$}]{enemies }\end{DoxyParamCaption})}
+
+
+
+Spawns the player and enemy sprites, or resets the positions to their spawn points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which the sprites must be drawn.~\newline
+The sprite structure pointer \textquotesingle{}player\textquotesingle{} which contains information about the player sprite.~\newline
+The integer \textquotesingle{}enemy\+Count\textquotesingle{} which is the amount of enemies.~\newline
+The array of sprite structures \textquotesingle{}enemies\textquotesingle{} which contains information about all of the enemies. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The x and y positions of the sprites will be changed, and they will be redrawn on the window. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_a8120372d3f9fd0d09820305f131135b7}{level\+\_\+create\+Sprites}} \mbox{\hyperlink{levels_8h_af373dd192df9166162888aff8d2eb836}{level\+\_\+check\+Collision}} 
+\end{DoxySeeAlso}

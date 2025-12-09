@@ -15,7 +15,7 @@ typedef struct
  	int yVel;
 	/// Sprite's x velocity.
 	int xVel;
-	/// For the player, this is the amount of lives left; for the enemies it is their status: 0 = alive & moving, 1 = alive & frozen, 2 = dead
+	/// For the player, this is the amount of lives left; <br> For the enemies it is their status: 0 = alive & moving, 1 = alive & frozen, 2 = dead
 	int life;
 	/// The tile that is under the sprite. Program will redraw it after the sprite moves.
 	char tile;
@@ -47,7 +47,7 @@ sprite sprite_createEnemy(int i);
 
 /**
  * @brief Spawns the player and enemy sprites, or resets the positions to their spawn points.
- * @param The WINDOW pointer 'w' which is the window onto which the sprites must be drawn; the sprite structure pointer 'player' which contains information about the player sprite; the integer 'enemyCount' which is the amount of enemies; and the array of sprite structures 'enemies' which contains information about all of the enemies.
+ * @param The WINDOW pointer 'w' which is the window onto which the sprites must be drawn.<br>The sprite structure pointer 'player' which contains information about the player sprite.<br>The integer 'enemyCount' which is the amount of enemies.<br>The array of sprite structures 'enemies' which contains information about all of the enemies.
  * @pre None
  * @post The x and y positions of the sprites will be changed, and they will be redrawn on the window.
  * @throws None
@@ -58,7 +58,7 @@ void sprite_reset(WINDOW *w, sprite *player, int enemyCount, sprite *enemies);
 
 /**
  * @brief Moves the given sprite.
- * @param The WINDOW pointer 'w' which is the window onto which the sprites must be drawn; and the sprite structure pointer 's' which contains information about the sprite to be moved.
+ * @param The WINDOW pointer 'w' which is the window onto which the sprites must be drawn.<br>The sprite structure pointer 's' which contains information about the sprite to be moved.
  * @pre The appropriate checks were done to make sure the sprite can be moved.
  * @post The sprite's xPos, yPos, and tile will be changed, and they will be redrawn on the window.
  * @throws None

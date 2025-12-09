@@ -1,0 +1,252 @@
+\hypertarget{levels_8h}{}\section{/home/students/sequeiran/\+A2/levels.h File Reference}
+\label{levels_8h}\index{/home/students/sequeiran/\+A2/levels.\+h@{/home/students/sequeiran/\+A2/levels.\+h}}
+{\ttfamily \#include \char`\"{}sprite.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$ncurses.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{levels_8h_a942205eac6bd5ffce7696ae29d1626b8}{display\+\_\+level}} (int i, W\+I\+N\+D\+OW $\ast$w)
+\begin{DoxyCompactList}\small\item\em Creates and runs the level in a new window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{levels_8h_a8120372d3f9fd0d09820305f131135b7}{level\+\_\+create\+Sprites}} (W\+I\+N\+D\+OW $\ast$w, int player\+Lives, int enemy\+Count)
+\begin{DoxyCompactList}\small\item\em Creates the sprites for player and enemies. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{levels_8h_a94f7663bad56c5069d33de816fbf571b}{level\+\_\+run}} (W\+I\+N\+D\+OW $\ast$w, \mbox{\hyperlink{structsprite}{sprite}} player, int enemy\+Count, \mbox{\hyperlink{structsprite}{sprite}} enemies\mbox{[}enemy\+Count\mbox{]})
+\begin{DoxyCompactList}\small\item\em Calls functions to run the game, including getting player input, and updating frames and sprites. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{levels_8h_ace709168861a37d3cdb47c0e45fb4908}{level\+\_\+check\+Input}} (W\+I\+N\+D\+OW $\ast$w, int input, int $\ast$game\+Stage, time\+\_\+t $\ast$stopped\+Time, int $\ast$stopped\+Enemy, \mbox{\hyperlink{structsprite}{sprite}} $\ast$player, int enemy\+Count, \mbox{\hyperlink{structsprite}{sprite}} $\ast$enemies)
+\begin{DoxyCompactList}\small\item\em Checks the player input and accordingly updates the game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{levels_8h_aff1d9205a942c539b0fa0fe84cd55743}{level\+\_\+update\+Frame}} (W\+I\+N\+D\+OW $\ast$w, time\+\_\+t $\ast$stopped\+Time, int stopped\+Enemy, \mbox{\hyperlink{structsprite}{sprite}} $\ast$player, int enemy\+Count, \mbox{\hyperlink{structsprite}{sprite}} $\ast$enemies)
+\begin{DoxyCompactList}\small\item\em Updates the frame by moving sprites, and/or unfreezing enemies. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{levels_8h_af373dd192df9166162888aff8d2eb836}{level\+\_\+check\+Collision}} (W\+I\+N\+D\+OW $\ast$w, time\+\_\+t $\ast$stopped\+Time, \mbox{\hyperlink{structsprite}{sprite}} $\ast$player, int enemy\+Count, \mbox{\hyperlink{structsprite}{sprite}} $\ast$enemies, int $\ast$enemies\+Left)
+\begin{DoxyCompactList}\small\item\em Checks if the player and enemies are colliding. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{levels_8h_a942205eac6bd5ffce7696ae29d1626b8}\label{levels_8h_a942205eac6bd5ffce7696ae29d1626b8}} 
+\index{levels.\+h@{levels.\+h}!display\+\_\+level@{display\+\_\+level}}
+\index{display\+\_\+level@{display\+\_\+level}!levels.\+h@{levels.\+h}}
+\subsubsection{\texorpdfstring{display\+\_\+level()}{display\_level()}}
+{\footnotesize\ttfamily void display\+\_\+level (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{W\+I\+N\+D\+OW $\ast$}]{w }\end{DoxyParamCaption})}
+
+
+
+Creates and runs the level in a new window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & integer \textquotesingle{}i\textquotesingle{} which is either 0 or 1 if the level to be created is Easy or Hard. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+level\+\_\+create\+Sprites is called to create sprites. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} 
+
+\mbox{\hyperlink{map_8h_a3652e8aeeb107c1cc0f66a08b8fb4772}{map\+\_\+create\+Easy}} \mbox{\hyperlink{map_8h_af5f85520ce43733ebda268496bd3d95f}{map\+\_\+create\+Hard}} \mbox{\hyperlink{levels_8h_a8120372d3f9fd0d09820305f131135b7}{level\+\_\+create\+Sprites}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{levels_8h_af373dd192df9166162888aff8d2eb836}\label{levels_8h_af373dd192df9166162888aff8d2eb836}} 
+\index{levels.\+h@{levels.\+h}!level\+\_\+check\+Collision@{level\+\_\+check\+Collision}}
+\index{level\+\_\+check\+Collision@{level\+\_\+check\+Collision}!levels.\+h@{levels.\+h}}
+\subsubsection{\texorpdfstring{level\+\_\+check\+Collision()}{level\_checkCollision()}}
+{\footnotesize\ttfamily void level\+\_\+check\+Collision (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{time\+\_\+t $\ast$}]{stopped\+Time,  }\item[{\mbox{\hyperlink{structsprite}{sprite}} $\ast$}]{player,  }\item[{int}]{enemy\+Count,  }\item[{\mbox{\hyperlink{structsprite}{sprite}} $\ast$}]{enemies,  }\item[{int $\ast$}]{enemies\+Left }\end{DoxyParamCaption})}
+
+
+
+Checks if the player and enemies are colliding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which everything has been printed.~\newline
+The time\+\_\+t pointer \textquotesingle{}stopped\+Time\textquotesingle{} which saved time when the enemy was frozen.~\newline
+The sprite structure pointer \textquotesingle{}player\textquotesingle{} which contains information about the player sprite.~\newline
+The integer \textquotesingle{}enemy\+Count\textquotesingle{} which is the amount of enemies.~\newline
+The array of sprite structures \textquotesingle{}enemies\textquotesingle{} which contains information about all of the enemies.~\newline
+The integer pointer \textquotesingle{}enemies\+Left\textquotesingle{} which is the number of enemies still alive. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+Everything has been initialized and updated properly. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The pointers might be updated depending on if the player is colliding with an enemy, and if that enemy is frozen or not. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_a94f7663bad56c5069d33de816fbf571b}{level\+\_\+run}} 
+
+\mbox{\hyperlink{map_8h}{map.\+h}} \mbox{\hyperlink{sprite_8h}{sprite.\+h}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{levels_8h_ace709168861a37d3cdb47c0e45fb4908}\label{levels_8h_ace709168861a37d3cdb47c0e45fb4908}} 
+\index{levels.\+h@{levels.\+h}!level\+\_\+check\+Input@{level\+\_\+check\+Input}}
+\index{level\+\_\+check\+Input@{level\+\_\+check\+Input}!levels.\+h@{levels.\+h}}
+\subsubsection{\texorpdfstring{level\+\_\+check\+Input()}{level\_checkInput()}}
+{\footnotesize\ttfamily void level\+\_\+check\+Input (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{int}]{input,  }\item[{int $\ast$}]{game\+Stage,  }\item[{time\+\_\+t $\ast$}]{stopped\+Time,  }\item[{int $\ast$}]{stopped\+Enemy,  }\item[{\mbox{\hyperlink{structsprite}{sprite}} $\ast$}]{player,  }\item[{int}]{enemy\+Count,  }\item[{\mbox{\hyperlink{structsprite}{sprite}} $\ast$}]{enemies }\end{DoxyParamCaption})}
+
+
+
+Checks the player input and accordingly updates the game. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which everything has been printed.~\newline
+The integer \textquotesingle{}input\textquotesingle{} which contains the player\textquotesingle{}s inputed key.~\newline
+The integer pointer \textquotesingle{}game\+Stage\textquotesingle{} which represents whether the game is running, paused, or completed.~\newline
+The time\+\_\+t pointer \textquotesingle{}stopped\+Time\textquotesingle{} which saved the when the enemy was frozen.~\newline
+The integer \textquotesingle{}stopped\+Enemy\textquotesingle{} which represents the index of the frozen enemies (0 = odd enemies, 1 = even enemies).~\newline
+The sprite structure pointer \textquotesingle{}player\textquotesingle{} which contains information about the player sprite.~\newline
+The integer \textquotesingle{}enemy\+Count\textquotesingle{} which is the amount of enemies.~\newline
+The array of sprite structures \textquotesingle{}enemies\textquotesingle{} which contains information about all of the enemies. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+Everything has been initialized and updated properly. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The pointers might be updated depending on the player\textquotesingle{}s input. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_a94f7663bad56c5069d33de816fbf571b}{level\+\_\+run}} 
+
+\mbox{\hyperlink{map_8h}{map.\+h}} \mbox{\hyperlink{sprite_8h}{sprite.\+h}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{levels_8h_a8120372d3f9fd0d09820305f131135b7}\label{levels_8h_a8120372d3f9fd0d09820305f131135b7}} 
+\index{levels.\+h@{levels.\+h}!level\+\_\+create\+Sprites@{level\+\_\+create\+Sprites}}
+\index{level\+\_\+create\+Sprites@{level\+\_\+create\+Sprites}!levels.\+h@{levels.\+h}}
+\subsubsection{\texorpdfstring{level\+\_\+create\+Sprites()}{level\_createSprites()}}
+{\footnotesize\ttfamily void level\+\_\+create\+Sprites (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{int}]{player\+Lives,  }\item[{int}]{enemy\+Count }\end{DoxyParamCaption})}
+
+
+
+Creates the sprites for player and enemies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which the sprites must be drawn.~\newline
+The integer \textquotesingle{}player\+Lives\textquotesingle{} which is the amount of lives the player can have.~\newline
+The integer \textquotesingle{}enemy\+Count\textquotesingle{} which is the amount of enemies that must be created. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The sprites have been created and printed onto the window, and then level\+\_\+run will be called. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_a942205eac6bd5ffce7696ae29d1626b8}{display\+\_\+level}} 
+
+\mbox{\hyperlink{sprite_8h_a9ebe044eb55190daa81aaf08f41d1fd2}{sprite\+\_\+create\+Player}} \mbox{\hyperlink{sprite_8h_ae94fa8125b1db6fefed7c53c9247d867}{sprite\+\_\+create\+Enemy}} \mbox{\hyperlink{sprite_8h_a1a774dcb086ee4fefb9bfbe2813d7171}{sprite\+\_\+reset}} \mbox{\hyperlink{levels_8h_a94f7663bad56c5069d33de816fbf571b}{level\+\_\+run}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{levels_8h_a94f7663bad56c5069d33de816fbf571b}\label{levels_8h_a94f7663bad56c5069d33de816fbf571b}} 
+\index{levels.\+h@{levels.\+h}!level\+\_\+run@{level\+\_\+run}}
+\index{level\+\_\+run@{level\+\_\+run}!levels.\+h@{levels.\+h}}
+\subsubsection{\texorpdfstring{level\+\_\+run()}{level\_run()}}
+{\footnotesize\ttfamily void level\+\_\+run (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{\mbox{\hyperlink{structsprite}{sprite}}}]{player,  }\item[{int}]{enemy\+Count,  }\item[{\mbox{\hyperlink{structsprite}{sprite}}}]{enemies\mbox{[}enemy\+Count\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Calls functions to run the game, including getting player input, and updating frames and sprites. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which everything will be printed.~\newline
+The sprite structure \textquotesingle{}player\textquotesingle{} which contains information about the player sprite.~\newline
+The integer \textquotesingle{}enemy\+Count\textquotesingle{} which is the amount of enemies.~\newline
+The array of sprite structures \textquotesingle{}enemies\textquotesingle{} which contains information about all of the enemies. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+Everything has been initialized properly. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+After the game is complete (player won, lost, or quit) the function stack returns back to main 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_a8120372d3f9fd0d09820305f131135b7}{level\+\_\+create\+Sprites}} 
+
+\mbox{\hyperlink{levels_8h_ace709168861a37d3cdb47c0e45fb4908}{level\+\_\+check\+Input}} \mbox{\hyperlink{levels_8h_aff1d9205a942c539b0fa0fe84cd55743}{level\+\_\+update\+Frame}} \mbox{\hyperlink{levels_8h_af373dd192df9166162888aff8d2eb836}{level\+\_\+check\+Collision}} \mbox{\hyperlink{map_8h_afe68d90439c79ee0610399f02f61e0ad}{map\+\_\+game\+Done}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{levels_8h_aff1d9205a942c539b0fa0fe84cd55743}\label{levels_8h_aff1d9205a942c539b0fa0fe84cd55743}} 
+\index{levels.\+h@{levels.\+h}!level\+\_\+update\+Frame@{level\+\_\+update\+Frame}}
+\index{level\+\_\+update\+Frame@{level\+\_\+update\+Frame}!levels.\+h@{levels.\+h}}
+\subsubsection{\texorpdfstring{level\+\_\+update\+Frame()}{level\_updateFrame()}}
+{\footnotesize\ttfamily void level\+\_\+update\+Frame (\begin{DoxyParamCaption}\item[{W\+I\+N\+D\+OW $\ast$}]{w,  }\item[{time\+\_\+t $\ast$}]{stopped\+Time,  }\item[{int}]{stopped\+Enemy,  }\item[{\mbox{\hyperlink{structsprite}{sprite}} $\ast$}]{player,  }\item[{int}]{enemy\+Count,  }\item[{\mbox{\hyperlink{structsprite}{sprite}} $\ast$}]{enemies }\end{DoxyParamCaption})}
+
+
+
+Updates the frame by moving sprites, and/or unfreezing enemies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & W\+I\+N\+D\+OW pointer \textquotesingle{}w\textquotesingle{} which is the window onto which everything will be printed.~\newline
+The time\+\_\+t pointer \textquotesingle{}stopped\+Time\textquotesingle{} which saved the time when the enemy was frozen.~\newline
+The integer \textquotesingle{}stopped\+Enemy\textquotesingle{} which represents the index of the frozen enemies (0 = odd enemies, 1 = even enemies).~\newline
+The sprite structure pointer \textquotesingle{}player\textquotesingle{} which contains information about the player sprite.~\newline
+The integer \textquotesingle{}enemy\+Count\textquotesingle{} which is the amount of enemies.~\newline
+The array of sprite structures \textquotesingle{}enemies\textquotesingle{} which contains information about all of the enemies. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+Everything has been initialized and updated properly. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The pointers might be updated if the sprites can move, and accordingly the window will also be updated. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{levels_8h_a94f7663bad56c5069d33de816fbf571b}{level\+\_\+run}} 
+
+\mbox{\hyperlink{map_8h}{map.\+h}} \mbox{\hyperlink{sprite_8h}{sprite.\+h}} 
+\end{DoxySeeAlso}
