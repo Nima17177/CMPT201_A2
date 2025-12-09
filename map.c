@@ -224,7 +224,10 @@ void map_EndScreen(WINDOW *w, char *msg)
 	box(w, 0, 0);
 	//Small box inside the window
 	mvwhline(w, MAX_Y - 4, 1, ACS_HLINE, MAX_X - 2);
+	wattron(w, COLOR_PAIR(6));
 	mvwprintw(w, MAX_Y - 2, MAX_X/2 - 17, "Press <Q> then any key to continue.");
+	wattroff(w, COLOR_PAIR(6));
+	wrefresh(w);
 
 	int dy = 1;
 	int dx = 1;
