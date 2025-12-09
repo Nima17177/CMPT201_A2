@@ -202,6 +202,7 @@ void map_starFall(WINDOW *w)
 		mvwaddch(w, y -1, x, ' ');
 	}
 	wrefresh(w);
+}
 
 void map_endScreen(WINDOW *w, char *msg)
 {
