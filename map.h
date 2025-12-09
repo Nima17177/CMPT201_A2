@@ -114,6 +114,12 @@ void map_decrementEnemies(WINDOW *w, int *enemies);
  */
 void map_updateTime(WINDOW *w, int time);
 
+void map_displayPause(WINDOW *w);
+
+void map_removePause(WINDOW *w); 
+
+char map_quitGame(WINDOW *w); 
+
 /**
  * @brief Creates a End Screen message based on outcome or input.
  * @param The WINDOW pointer 'w' which is the window onto which everything has been printed.<br>The integer 'x' which represents how the game ended: 1 = lost, 2 = won, 3 = quit.

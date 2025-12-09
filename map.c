@@ -83,7 +83,7 @@ void map_createUi(WINDOW *w, int lives, int enemies)
 	wattron(w, COLOR_PAIR(6));
 	mvwprintw(w, 1, 8, "Lives: %d  ", lives);
 	mvwprintw(w, 1, 62, "Enemies: %d  ", enemies);
-	mvwprintw(w, 10, 61, "Powerup Cooldown: "); 
+	mvwprintw(w, 10, 62, "Powerup Cooldown:"); 
 	wattroff(w, COLOR_PAIR(6));
 	mvwprintw(w, 11, 70, "0"); 
 	wrefresh(w);
@@ -156,6 +156,42 @@ void map_updateTime(WINDOW *w, int time)
 	mvwprintw(w, 11, 70, "%d", time);
 	box(w, 0, 0); 
 	wrefresh(w);	
+}
+
+void map_displayPause(WINDOW *w)
+{
+	wattron(w, COLOR_PAIR(3)); 
+	mvwprintw(w, 5, 38, "Game Paused");
+        wattroff(w, COLOR_PAIR(3)); 
+	wrefresh(w);
+}
+
+void map_removePause(WINDOW *w)
+{
+	mvwprintw(w, 5, 38, "           "); 
+}
+
+char map_quitGame(WINDOW *w)
+{
+	nodelay(stdscr, FALSE); 
+	wattron(w, COLOR_PAIR(3));
+	mvwprintw(w, 10, 1, "Quit Game?"); 
+	mvwprintw(w, 11, 1, "<y> Return menu"); 
+        mvwprintw(w, 12, 1, "<n> Continue game"); 
+	wattroff(w, COLOR_PAIR(3)); 
+	wrefresh(w);
+	while (1)
+	{
+		char ch = getchar();
+	        if (ch == 'y' || ch == 'n')
+		{
+			mvwprintw(w, 10, 1, "          "); 
+			mvwprintw(w, 11, 1, "                ");
+		        mvwprintw(w, 12, 1, "                 "); 
+			wrefresh(w); 
+			return ch; 	
+		}	
+	}
 }
 
 void map_gameDone(WINDOW *w, int x)
@@ -247,7 +283,7 @@ void map_endScreen(WINDOW *w, char *msg)
 		int ch = getch();
 		if (ch != ERR)
 		{
-			break;
+			break; 
 		}	
 	}
 	wrefresh(w);

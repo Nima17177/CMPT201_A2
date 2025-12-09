@@ -66,6 +66,19 @@ void level_run(WINDOW *w, sprite player, int enemyCount, sprite enemies[enemyCou
 				map_updateTime(w, (15-(time(NULL)-stoppedTime))); 
 			}
 		}
+		else if (gameStage == 3)
+		{ 
+			char cont = map_quitGame(w);
+		        if (cont == 'y')
+			{
+				gameStage = -3;
+			}	
+			else if (cont == 'n')
+			{
+				gameStage = 0;
+			}
+			nodelay(stdscr, TRUE); 
+		}
 		napms(150);
 	}
 	map_gameDone(w, gameStage);
@@ -79,11 +92,19 @@ void level_checkInput(WINDOW *w, int input, int *gameStage, time_t *stoppedTime,
 {
 	if (input == 'q') // Quit
 	{
-		*gameStage = -3;
+		*gameStage = 3;
 	}
 	else if (input == 'p')
 	{
 		*gameStage = (((*gameStage)+1) % 2); // Increment by 1 and then wrap around.
+		if (*gameStage == 1)
+		{
+			map_displayPause(w); 
+		}
+		else
+		{
+			map_removePause(w); 
+		}
 	}
 	if (*gameStage != 1)
 	{
