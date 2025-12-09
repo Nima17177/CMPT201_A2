@@ -86,30 +86,7 @@ void map_createUi(WINDOW *w, int lives, int enemies)
 	mvwprintw(w, 10, 61, "Powerup Cooldown: "); 
 	wattroff(w, COLOR_PAIR(6));
 	mvwprintw(w, 11, 70, "0"); 
-	map_vines(w); 
 	wrefresh(w);
-}
-
-void map_vines(WINDOW *w)
-{
-	mvwhline(w, 7 , 5, ACS_HLINE, 7);
-	for (int y = 8; y < 25; y++)
-	{
-		mvwaddch(w, y , 5, ACS_ULCORNER);
-	}
-	for (int y = 8; y < 25; y++)
-	{
-		mvwaddch(w, y , 6, ACS_LRCORNER);
-	}
-	for (int y = 8; y < 25; y++)
-	{
-		mvwaddch(w, y , 10, ACS_ULCORNER);
-	}
-	for (int y = 8; y < 25; y++)
-	{
-		mvwaddch(w, y , 11, ACS_LRCORNER);
-	}
-	mvwhline(w, 7 , 68, ACS_HLINE, 7);
 }
 
 bool map_isWall(WINDOW *w, int y, int x)
@@ -186,7 +163,7 @@ void map_gameDone(WINDOW *w, int x)
 	map_starFall(w);
 	mvwhline(w, MAX_Y - 4, 1, ACS_HLINE, MAX_X - 2);
 	wattron(w, COLOR_PAIR(6));
-	mvwprintw(w, MAX_Y - 2, MAX_X/2 - 17, "Press <Q> then any key to continue.");
+	mvwprintw(w, MAX_Y - 2, MAX_X/2 - 17, "Press any key to continue.");
 	wattroff(w, COLOR_PAIR(6));
 	wrefresh(w);
 	if (x == -1)
