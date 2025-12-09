@@ -176,5 +176,8 @@ void map_loseScreen(WINDOW *w);
  */
 void map_quitScreen(WINDOW *w);
 
+
+void map_EndScreen(WINDOW *w, char *msg);
+
 #endif
 
