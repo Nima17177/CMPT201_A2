@@ -43,8 +43,6 @@ void map_createHard(WINDOW *w);
  */
 void map_createUi(WINDOW *w, int lives, int enemies);
 
-void map_vines(WINDOW *w); 
-
 /**
  * @brief Checks if the given coordinates are a wall.
  * @param The WINDOW pointer 'w' which is the window onto which everything has been printed; and the integers 'y' and 'x' which represent the coordinates that must be checked.
@@ -102,10 +100,10 @@ void map_decrementLives(WINDOW *w, int *lives);
 void map_decrementEnemies(WINDOW *w, int *enemies);
 
 /**
- * @brief 
- * @param 
+ * @brief Updates the time left on power ups and prints them 
+ * @param The WINDOW pointer 'w' which is the window onto which everything has been printed; and the integer 'time' which represents the time left on power ups.
  * @pre None
- * @post 
+ * @post The time is printed onto 'w'.
  * @throws None
  * @returns None
  * @see 
@@ -113,7 +111,7 @@ void map_decrementEnemies(WINDOW *w, int *enemies);
 void map_updateTime(WINDOW *w, int time);
 
 /**
- * @brief Creates a game over message.
+ * @brief Creates a End Screen message based on outcome or input.
  * @param The WINDOW pointer 'w' which is the window onto which everything has been printed; and the integer 'x' which represents how the game ended: 1 = lost, 2 = won, 3 = quit.
  * @pre None
  * @post The message is printed
@@ -124,8 +122,8 @@ void map_updateTime(WINDOW *w, int time);
 void map_gameDone(WINDOW *w, int x);
 
 /**
- * @brief
- * @param The WINDOW pointer 'w' which is the window onto which everything must be printed.
+ * @brief Displays a star falling animation, that also clears the screen 
+ * @param The WINDOW pointer 'w' which is the window onto which everything must be printed
  * @pre None
  * @post 
  * @throws None
@@ -135,7 +133,7 @@ void map_gameDone(WINDOW *w, int x);
 void map_starFall(WINDOW *w);
 
 /**
- * @brief 
+ * @brief Gives an end screen with a message that bounces around the screen like DVD screensaver
  * @param The WINDOW pointer 'w' which is the window onto which everything must be printed.
  * @pre None
  * @post 
