@@ -156,5 +156,6 @@ void map_loseScreen(WINDOW *w);
  */
 void map_endScreen(WINDOW *w, char *msg);
 
+
 #endif
 

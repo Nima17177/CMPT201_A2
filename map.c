@@ -162,7 +162,9 @@ void map_gameDone(WINDOW *w, int x)
 {
 	map_starFall(w);
 	mvwhline(w, MAX_Y - 4, 1, ACS_HLINE, MAX_X - 2);
-	mvwprintw(w, MAX_Y - 2, MAX_X/2 - 17, "Press any key to continue.");
+	wattron(w, COLOR_PAIR(6));
+	mvwprintw(w, MAX_Y - 2, MAX_X/2 - 17, "Press <Q> then any key to continue.");
+	wattroff(w, COLOR_PAIR(6));
 	wrefresh(w);
 	if (x == -1)
 	{
@@ -200,14 +202,16 @@ void map_starFall(WINDOW *w)
 		mvwaddch(w, y -1, x, ' ');
 	}
 	wrefresh(w);
-}
 
 void map_endScreen(WINDOW *w, char *msg)
 {
 	int len = strlen(msg);
 	int startx = 3;
 	int starty = 3;
+	box(w, 0, 0);
 	//Small box inside the window
+	mvwhline(w, MAX_Y - 4, 1, ACS_HLINE, MAX_X - 2);
+	wrefresh(w);
 
 	int dy = 1;
 	int dx = 1;
