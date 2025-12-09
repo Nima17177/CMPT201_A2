@@ -221,6 +221,7 @@ void map_starFall(WINDOW *w)
 	int y = 1;
 	while (y < MAX_Y - 1)
 	{
+		//getchar(); // If the user mashes buttons during the transition, this will ignore it. 
 		for (int x =1; x < MAX_X -1; x++)
 		{
 			if (y > 1)
@@ -249,10 +250,9 @@ void map_endScreen(WINDOW *w, char *msg)
 	//Small box inside the window
 	mvwhline(w, MAX_Y - 4, 1, ACS_HLINE, MAX_X - 2);
 	wrefresh(w);
-
+	nodelay(stdscr, TRUE); 
 	int dy = 1;
 	int dx = 1;
-	
 	while (1)
 	{
 		for (int i = 0; i < len; i++)
@@ -286,5 +286,6 @@ void map_endScreen(WINDOW *w, char *msg)
 			break; 
 		}	
 	}
+	nodelay(stdscr, FALSE); 
 	wrefresh(w);
 }

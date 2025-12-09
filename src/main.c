@@ -170,18 +170,16 @@ int main(void)
 		if (input == 'e' || input == 'h')
 		{
 			map_starFall(w);
-			//endwin();
-			//delwin(w); 
-			wclear(w);
+			delwin(w); 
 			if (input == 'e')
 			{
-				display_level(0, w);
+				display_level(0);
 			}
 			else
 			{
-				display_level(1, w);
+				display_level(1);
 			}
-			//w = newwin(MAX_Y, MAX_X, ORIGIN_Y, ORIGIN_X);
+			w = newwin(MAX_Y, MAX_X, ORIGIN_Y, ORIGIN_X);
 			wclear(w); 
 			box(w, 0, 0);
 			splashPage(w);

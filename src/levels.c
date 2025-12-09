@@ -2,9 +2,9 @@
 #include "sprite.h"
 #include "map.h"
 
-void display_level(int i, WINDOW *w)
+void display_level(int i)
 {
-	//WINDOW *w = newwin(MAX_Y, MAX_X, ORIGIN_Y, ORIGIN_X);
+	WINDOW *w = newwin(MAX_Y, MAX_X, ORIGIN_Y, ORIGIN_X);
 	box(w, 0, 0);
 	wrefresh(w);
 	if (i == 0)
@@ -36,8 +36,8 @@ void level_createSprites(WINDOW *w, int playerLives, int enemyCount)
 void level_run(WINDOW *w, sprite player, int enemyCount, sprite enemies[enemyCount])
 {
 	keypad(stdscr, TRUE);
-	nodelay(stdscr, TRUE); // The program does not stop for the player input.
 	int input;
+	nodelay(stdscr, TRUE); // The program does not stop for the player input.
 	time_t stoppedTime = 0; // Amount of time since enemies were frozen.
 	int stoppedEnemy = -1; // Which enemy was frozen. 0 = odd enemies, 1 = even enemies
 	int enemiesLeft = enemyCount;
@@ -83,9 +83,7 @@ void level_run(WINDOW *w, sprite player, int enemyCount, sprite enemies[enemyCou
 	}
 	map_gameDone(w, gameStage);
 	nodelay(stdscr, FALSE); 
-	//endwin();
-	//delwin(w);
-	wclear(w);   
+	delwin(w);   
 }
 
 void level_checkInput(WINDOW *w, int input, int *gameStage, time_t *stoppedTime, int *stoppedEnemy, sprite *player, int enemyCount, sprite *enemies)
@@ -208,6 +206,7 @@ void level_checkCollision(WINDOW *w, time_t *stoppedTime, sprite *player, int en
 		{
 			enemies[i].tile = ' ';
 			player->tile = ' ';
+			mvwaddch(w, player->yPos, player->xPos, player->symbol); 
 			if (enemies[i].life == 1) // Enemy is frozen
 			{
 				map_decrementEnemies(w, enemiesLeft);
@@ -215,7 +214,7 @@ void level_checkCollision(WINDOW *w, time_t *stoppedTime, sprite *player, int en
 				// Set enemy to dead
 				enemies[i].life = 2;
 				enemies[i].symbol = ' ';
-				*stoppedTime = *stoppedTime / 2; // Half frozen cooldown
+				*stoppedTime = *stoppedTime - ((15-(time(NULL)-*stoppedTime))/2); // Half frozen cooldown
 			}
 			else if (enemies[i].life == 0) // Enemy is not frozen
 			{

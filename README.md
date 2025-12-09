@@ -21,4 +21,8 @@ CMPT 201 A2:
     If the player sprite collides with a frozen enemy sprite, the enemy is eaten. <br>
 
 # MILESTONES & PROJECT PLAN
-    Date: Milestone
+    Milestone 1: 20th Nov: Concept Creation and Planning.
+    Milestone 2: 20th-27th Nov: Complete splash page and skeleton mechanics.
+    Milestone 3: 27th Nov - 4th Dec: Complete Easy Map design and UI, and implement gameplay mechanics.  
+    Milestone 4: 5th-7th Dec: Complete Hard Map and End Screen Design; Testing and debugging. 
+    Milestone 5: 8th-9th Dec: Polish and Documentation

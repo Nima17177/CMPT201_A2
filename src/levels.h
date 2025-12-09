@@ -18,7 +18,7 @@
  * @see main
  * @see map_createEasy map_createHard level_createSprites
  */
-void display_level(int i, WINDOW *w);
+void display_level(int i);
 
 /**
  * @brief Creates the sprites for player and enemies.
